@@ -30,7 +30,7 @@
             line-height: 1.6;
         }
 
-        /* BARRA SUPERIOR E IMPRESION CORPORATIVA */
+        /* BARRA SUPERIOR */
         .top-bar {
             background-color: #081a33;
             color: #ffffff;
@@ -39,10 +39,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .top-bar span {
-            font-weight: 500;
         }
 
         .btn-lock {
@@ -61,7 +57,7 @@
             color: #ffffff;
         }
 
-        /* HEADER CORPORATIVO PABS */
+        /* HEADER CORPORATIVO */
         header {
             background: #ffffff;
             border-bottom: 3px solid var(--pabs-gold);
@@ -116,21 +112,19 @@
             background: linear-gradient(135deg, var(--pabs-blue) 0%, var(--pabs-blue-light) 100%);
             color: white;
             text-align: center;
-            padding: 45px 20px;
-            position: relative;
+            padding: 40px 20px;
         }
 
         .hero h2 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 800;
             margin-bottom: 10px;
-            color: #ffffff;
         }
 
         .hero p {
-            font-size: 1.05rem;
+            font-size: 1rem;
             max-width: 750px;
-            margin: 0 auto 20px auto;
+            margin: 0 auto 15px auto;
             color: #e2e8f0;
             font-weight: 300;
         }
@@ -138,17 +132,16 @@
         .hero-badges {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
         }
 
         .hero-badge-item {
             background: rgba(255, 255, 255, 0.12);
             border: 1px solid rgba(255, 255, 255, 0.25);
-            padding: 6px 16px;
+            padding: 5px 14px;
             border-radius: 20px;
-            backdrop-filter: blur(5px);
         }
 
         /* CONTENEDOR PRINCIPAL */
@@ -162,7 +155,7 @@
             text-align: center;
             color: var(--pabs-blue);
             font-weight: 800;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             margin-bottom: 25px;
             position: relative;
         }
@@ -170,7 +163,7 @@
         .section-title::after {
             content: '';
             display: block;
-            width: 60px;
+            width: 50px;
             height: 4px;
             background: var(--pabs-gold);
             margin: 8px auto 0 auto;
@@ -191,15 +184,8 @@
             overflow: hidden;
             border: 1px solid #e2e8f0;
             box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-            transition: transform 0.3s, box-shadow 0.3s;
             display: flex;
             flex-direction: column;
-            position: relative;
-        }
-
-        .plan-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
         }
 
         .plan-card.featured {
@@ -214,7 +200,6 @@
             font-weight: 700;
             padding: 4px;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .plan-header {
@@ -222,11 +207,6 @@
             color: white;
             padding: 20px;
             text-align: center;
-        }
-
-        .plan-header h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
         }
 
         .plan-price-box {
@@ -296,7 +276,7 @@
             margin-bottom: 6px;
         }
 
-        input[type="text"], input[type="number"], select, textarea {
+        input[type="text"], input[type="date"], input[type="number"], select, textarea {
             padding: 12px 14px;
             border: 1.5px solid #cbd5e1;
             border-radius: 6px;
@@ -309,7 +289,13 @@
             border-color: var(--pabs-blue);
         }
 
-        /* PLAZAS SELECCIÓN MÚLTIPLE */
+        input[readonly] {
+            background-color: #f1f5f9;
+            color: #0d2c54;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
         .plazas-group {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -336,14 +322,14 @@
             accent-color: var(--pabs-blue);
         }
 
-        /* PANEL ADMIN PRIVADO / INVISIBLE AL CLIENTE */
+        /* PANEL ADMIN PRIVADO OCULTO */
         .admin-private-panel {
             background-color: #fffbeb;
             border: 2px dashed var(--pabs-gold);
             padding: 20px;
             border-radius: 8px;
             margin: 20px 0;
-            display: none; /* Oculto para clientes */
+            display: none;
         }
 
         .admin-private-panel.visible {
@@ -362,7 +348,6 @@
             text-transform: uppercase;
         }
 
-        /* BOTONES DE ACCIÓN */
         .btn-submit {
             background-color: #25D366;
             color: white;
@@ -377,16 +362,14 @@
             justify-content: center;
             align-items: center;
             gap: 10px;
-            transition: background 0.2s, transform 0.1s;
+            transition: background 0.2s;
             box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
         }
 
         .btn-submit:hover {
             background-color: #1eb954;
-            transform: translateY(-2px);
         }
 
-        /* FOOTER */
         footer {
             background-color: var(--pabs-blue);
             color: white;
@@ -433,7 +416,7 @@
             <div class="hero-badge-item">✓ Sin límite de edad</div>
             <div class="hero-badge-item">✓ Seguro por Muerte Accidental</div>
             <div class="hero-badge-item">✓ Transferible 100%</div>
-            <div class="hero-badge-item">✓ Transferencia Familiar</div>
+            <div class="hero-badge-item">✓ Cobertura Nacional</div>
         </div>
     </section>
 
@@ -501,18 +484,68 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Nombre Completo del Titular:</label>
-                        <input type="text" id="nombreTitular" placeholder="Ej. Juan Pérez López" required>
+                        <label>Nombre(s) del Titular:</label>
+                        <input type="text" id="nombreTitular" placeholder="Ej. Juan" oninput="generarCURPAuto()" required>
                     </div>
 
                     <div class="form-group">
-                        <label>Teléfono de Contacto (WhatsApp):</label>
-                        <input type="text" id="telefonoTitular" placeholder="Ej. 665 123 4567" required>
+                        <label>Primer Apellido (Paterno):</label>
+                        <input type="text" id="apellidoPaterno" placeholder="Ej. Pérez" oninput="generarCURPAuto()" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Segundo Apellido (Materno):</label>
+                        <input type="text" id="apellidoMaterno" placeholder="Ej. López" oninput="generarCURPAuto()">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Fecha de Nacimiento:</label>
+                        <input type="date" id="fechaNacimiento" onchange="generarCURPAuto()" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Sexo:</label>
+                        <select id="sexoTitular" onchange="generarCURPAuto()" required>
+                            <option value="H">Hombre</option>
+                            <option value="M">Mujer</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Estado de Nacimiento:</label>
+                        <select id="estadoNacimiento" onchange="generarCURPAuto()" required>
+                            <option value="BC">Baja California</option>
+                            <option value="BS">Baja California Sur</option>
+                            <option value="SON">Sonora</option>
+                            <option value="SIN">Sinaloa</option>
+                            <option value="JAL">Jalisco</option>
+                            <option value="DF">Ciudad de México / CDMX</option>
+                            <option value="MIC">Michoacán</option>
+                            <option value="PUE">Puebla</option>
+                            <option value="VER">Veracruz</option>
+                            <option value="NE">Nacido en el Extranjero</option>
+                            <option value="OTRO">Otro Estado</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>CURP Calculada Automáticamente:</label>
+                        <input type="text" id="curpGenerada" readonly placeholder="Se generará automáticamente con tus datos">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Teléfono Principal del Titular (Para Confirmación):</label>
+                        <input type="text" id="telPrincipal" placeholder="Ej. 665 123 4567" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Teléfono de Referencia / Familiar:</label>
+                        <input type="text" id="telReferencia" placeholder="Ej. 664 987 6543" required>
                     </div>
 
                     <div class="form-group">
                         <label>Plan Funerario Seleccionado:</label>
-                        <select id="planSeleccionado" onchange="syncCostoFormulario()">
+                        <select id="planSeleccionado">
                             <option value="Imperial">Plan Imperial / Básico ($28,900 MXN)</option>
                             <option value="Premium" selected>Plan Premium ($32,900 MXN)</option>
                         </select>
@@ -524,7 +557,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Frecuencia de Pago Deseada:</label>
+                        <label>Frecuencia de Aportación:</label>
                         <select id="frecuenciaPago">
                             <option value="Semanal">Semanal</option>
                             <option value="Quincenal">Quincenal</option>
@@ -534,13 +567,13 @@
 
                     <div class="form-group">
                         <label>Beneficiario Designado:</label>
-                        <input type="text" id="nombreBeneficiario" placeholder="Nombre de familiar o beneficiario">
+                        <input type="text" id="nombreBeneficiario" placeholder="Nombre completo del beneficiario">
                     </div>
 
                 </div>
 
                 <div class="admin-private-panel" id="adminPrivatePanel">
-                    <span class="admin-title-tag">Panel Privado del Asesor / Ajuste Manual de Costos</span>
+                    <span class="admin-title-tag">Panel Privado del Asesor / Ajuste Manual</span>
                     
                     <div class="form-grid">
                         <div class="form-group">
@@ -552,8 +585,8 @@
                             <input type="number" id="costoPremiumInput" value="32900" onchange="actualizarPreciosGlobales()">
                         </div>
                         <div class="form-group full-width">
-                            <label>Notas / Convenios Especiales / Descuentos Corporativos (Privado):</label>
-                            <textarea id="notasAsesor" rows="2" placeholder="Anota promociones aplicadas, convenios especiales o detalles de pago..."></textarea>
+                            <label>Notas / Convenios Especiales (Privado):</label>
+                            <textarea id="notasAsesor" rows="2" placeholder="Notas internas de cobranza, acuerdos de nómina..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -570,17 +603,15 @@
         <p><strong>Programa de Apoyo de Beneficio Social® - PABS M.R.</strong></p>
         <p>Servifut de Prevención S.A. de C.V. | Domicilio: Calle 13 N° 1 Int. 4, Col. Espinoza, C.P. 21410, Tecate, B.C.</p>
         <p>Atención en Capillas Latinoamericana Recinto Funerario | Tels. (665) 655-7823 / (665) 654-5457 (24 Hrs.)</p>
-        <p style="margin-top: 15px; font-size: 0.75rem;">© 2026 PABS® Región Norte. Todos los derechos reservados. Formato Oficial Digital TKT-NORTE.</p>
+        <p style="margin-top: 15px; font-size: 0.75rem;">© 2026 PABS® Región Norte. Todos los derechos reservados.</p>
     </footer>
 
     <script>
-        // Precios base actualizados
         let precios = {
             Imperial: 28900,
             Premium: 32900
         };
 
-        // Cambiar visiblemente precios cuando el asesor edita en el panel privado
         function actualizarPreciosGlobales() {
             precios.Imperial = parseFloat(document.getElementById('costoImperialInput').value) || 28900;
             precios.Premium = parseFloat(document.getElementById('costoPremiumInput').value) || 32900;
@@ -588,17 +619,64 @@
             document.getElementById('displayImperial').innerText = '$' + precios.Imperial.toLocaleString('es-MX');
             document.getElementById('displayPremium').innerText = '$' + precios.Premium.toLocaleString('es-MX');
 
-            // Actualizar textos del combo
             const selectPlan = document.getElementById('planSeleccionado');
             selectPlan.options[0].text = `Plan Imperial / Básico ($${precios.Imperial.toLocaleString('es-MX')} MXN)`;
             selectPlan.options[1].text = `Plan Premium ($${precios.Premium.toLocaleString('es-MX')} MXN)`;
         }
 
-        function syncCostoFormulario() {
-            // Sincronización automática de campos si se requiere
+        // ALGORITMO AUTOMÁTICO DE CÁLCULO DE CURP
+        function generarCURPAuto() {
+            const nombre = document.getElementById('nombreTitular').value.trim().toUpperCase();
+            const pat = document.getElementById('apellidoPaterno').value.trim().toUpperCase();
+            const mat = document.getElementById('apellidoMaterno').value.trim().toUpperCase() || "X";
+            const fecha = document.getElementById('fechaNacimiento').value; // YYYY-MM-DD
+            const sexo = document.getElementById('sexoTitular').value;
+            const estado = document.getElementById('estadoNacimiento').value;
+
+            if (!nombre || !pat || !fecha) {
+                document.getElementById('curpGenerada').value = "";
+                return;
+            }
+
+            const fParts = fecha.split('-'); // [YYYY, MM, DD]
+            if (fParts.length !== 3) return;
+
+            const anio = fParts[0].substring(2, 4);
+            const mes = fParts[1];
+            const dia = fParts[2];
+
+            // Primera letra y primera vocal interna del apellido paterno
+            const c1 = pat.charAt(0) || "X";
+            let c2 = "X";
+            for (let i = 1; i < pat.length; i++) {
+                if ("AEIOU".includes(pat.charAt(i))) {
+                    c2 = pat.charAt(i);
+                    break;
+                }
+            }
+
+            const c3 = mat.charAt(0) || "X";
+            const c4 = nombre.charAt(0) || "X";
+
+            // Primeras consonantes internas
+            const getConsonante = (str) => {
+                for (let i = 1; i < str.length; i++) {
+                    if (!"AEIOU".includes(str.charAt(i)) && str.charAt(i) >= 'A' && str.charAt(i) <= 'Z') {
+                        return str.charAt(i);
+                    }
+                }
+                return "X";
+            };
+
+            const c14 = getConsonante(pat);
+            const c15 = getConsonante(mat);
+            const c16 = getConsonante(nombre);
+
+            // Armar CURP de 18 caracteres estandarizada
+            const curp = `${c1}${c2}${c3}${c4}${anio}${mes}${dia}${sexo}${estado}${c14}${c15}${c16}00`;
+            document.getElementById('curpGenerada').value = curp;
         }
 
-        // Interruptor para que solo tú actives el modo edición con contraseña
         function toggleAdminPanel() {
             const panel = document.getElementById('adminPrivatePanel');
             if (panel.classList.contains('visible')) {
@@ -607,25 +685,33 @@
                 const pass = prompt("Ingresa la clave del Asesor Ejecutivo PABS:");
                 if (pass === "sergio-admin" || pass === "pabs2026") {
                     panel.classList.add('visible');
-                    alert("Modo Asesor activado. Ahora puedes ajustar los costos y notas privadas.");
+                    alert("Modo Asesor activado.");
                 } else {
-                    alert("Clave incorrecta. Acceso denegado.");
+                    alert("Clave incorrecta.");
                 }
             }
         }
 
-        // Procesar envío a WhatsApp con formato de contrato
         function procesarSolicitud(e) {
             e.preventDefault();
 
-            const titular = document.getElementById('nombreTitular').value;
-            const tel = document.getElementById('telefonoTitular').value;
+            const nom = document.getElementById('nombreTitular').value;
+            const pat = document.getElementById('apellidoPaterno').value;
+            const mat = document.getElementById('apellidoMaterno').value;
+            const nombreCompleto = `${nom} ${pat} ${mat}`.trim();
+
+            const curp = document.getElementById('curpGenerada').value || "No generada";
+            const fechaNac = document.getElementById('fechaNacimiento').value;
+            const estadoNac = document.getElementById('estadoNacimiento').value;
+
+            const telPrincipal = document.getElementById('telPrincipal').value;
+            const telReferencia = document.getElementById('telReferencia').value;
+
             const plan = document.getElementById('planSeleccionado').value;
             const inicial = document.getElementById('pagoInicial').value;
             const frecuencia = document.getElementById('frecuenciaPago').value;
             const beneficiario = document.getElementById('nombreBeneficiario').value || 'Por definir';
 
-            // Captura de plazas seleccionadas
             const plazasChecked = document.querySelectorAll('input[name="plaza"]:checked');
             let plazas = Array.from(plazasChecked).map(c => c.value).join(', ');
             if (!plazas) plazas = 'Tecate / Tijuana';
@@ -633,25 +719,26 @@
             const costoFinal = precios[plan];
             const notas = document.getElementById('notasAsesor').value;
 
-            // Construir mensaje estructurado
             let msg = `*SOLICITUD DE AFILIACIÓN DIGITAL PABS®*\n`;
             msg += `_Programa de Apoyo de Beneficio Social_\n\n`;
-            msg += `👤 *Titular:* ${titular}\n`;
-            msg += `📞 *Teléfono:* ${tel}\n`;
+            msg += `👤 *Titular:* ${nombreCompleto}\n`;
+            msg += `🆔 *CURP Calculada:* ${curp}\n`;
+            msg += `📅 *Fecha Nacimiento:* ${fechaNac} (${estadoNac})\n`;
+            msg += `📱 *Teléfono Principal (Afiliación):* ${telPrincipal}\n`;
+            msg += `📞 *Teléfono Referencia / Secundario:* ${telReferencia}\n`;
             msg += `📍 *Plaza(s):* ${plazas}\n`;
-            msg += `📋 *Plan Solicidato:* Plan ${plan.toUpperCase()}\n`;
+            msg += `📋 *Plan Solicitado:* Plan ${plan.toUpperCase()}\n`;
             msg += `💰 *Costo Total del Plan:* $${costoFinal.toLocaleString('es-MX')} MXN\n`;
             msg += `💵 *Inversión Inicial:* $${inicial} MXN\n`;
-            msg += `📅 *Frecuencia de Aportación:* ${frecuencia}\n`;
+            msg += `📅 *Frecuencia de Pago:* ${frecuencia}\n`;
             msg += `👥 *Beneficiario:* ${beneficiario}\n`;
 
             if (notas.trim() !== "") {
-                msg += `\n📝 *Condiciones Especiales Asesor:* ${notas}\n`;
+                msg += `\n📝 *Notas del Asesor:* ${notas}\n`;
             }
 
-            msg += `\n_Solicitud generada a través del portal oficial PABS Región Norte._`;
+            msg += `\n_Solicitud digital generada para confirmación de expediente._`;
 
-            // Enviar por WhatsApp
             const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
             window.open(url, '_blank');
         }
