@@ -1,174 +1,171 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Afiliación Digital - Programa de Apoyo de Beneficio Social</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Afiliación Digital - Protección Familiar</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- jsPDF CDN para generar el PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.min.js"></script>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 font-sans">
 
-    <!-- Encabezado y Navegación -->
-    <header class="navbar">
-        <div class="logo-container">
-            <span class="logo-text">PABS</span>
-            <span class="sub-text">Programa de Apoyo de Beneficio Social</span>
-        </div>
-        <nav>
-            <a href="#inicio">Inicio</a>
-            <a href="#planes">Planes</a>
-            <a href="#registro" class="btn-nav">Afiliarme Ahora</a>
-        </nav>
-    </header>
-
-    <!-- Banner Principal -->
-    <section id="inicio" class="hero">
-        <div class="hero-content">
-            <h1>Protege el futuro de tu familia de forma digital</h1>
-            <p>Afilia tu plan de apoyo previsor hoy mismo con cuotas accesibles y flexibilidad de pago.</p>
-            <a href="#registro" class="btn-primary">Iniciar Afiliación</a>
-        </div>
-    </section>
-
-    <!-- Sección de Registro / Afiliación -->
-    <section id="registro" class="form-section">
-        <h2>Formulario Digital de Afiliación</h2>
-        <p class="section-subtitle">Completa los campos a continuación para procesar tu afiliación</p>
-
-        <form id="afiliacionForm">
-            <!-- Datos Personales -->
-            <fieldset>
-                <legend>Datos del Afiliado</legend>
-                
-                <div class="form-group">
-                    <label for="nombreCompleto">Nombre Completo *</label>
-                    <input type="text" id="nombreCompleto" required placeholder="Ej. Juan Pérez González">
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="telefono">Teléfono *</label>
-                        <input type="tel" id="telefono" required placeholder="10 dígitos">
-                    </div>
-                    <div class="form-group">
-                        <label for="whatsapp">WhatsApp *</label>
-                        <input type="tel" id="whatsapp" required placeholder="10 dígitos">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="fechaNacimiento">Fecha de Nacimiento *</label>
-                        <input type="date" id="fechaNacimiento" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="estadoCivil">Estado Civil *</label>
-                        <select id="estadoCivil" required>
-                            <option value="">Selecciona...</option>
-                            <option value="Soltero/a">Soltero/a</option>
-                            <option value="Casado/a">Casado/a</option>
-                            <option value="Divorciado/a">Divorciado/a</option>
-                            <option value="Viudo/a">Viudo/a</option>
-                            <option value="Unión Libre">Unión Libre</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="domicilioCobro">Domicilio de Cobro *</label>
-                    <input type="text" id="domicilioCobro" required placeholder="Calle, número, colonia, código postal y referencias">
-                </div>
-            </fieldset>
-
-            <!-- Selección de Plan -->
-            <fieldset>
-                <legend>Selección de Plan</legend>
-                <div class="planes-grid">
-                    <label class="card-plan">
-                        <input type="radio" name="plan" value="Básico Imperial" data-costo="28900" checked>
-                        <div class="card-content">
-                            <h3>Plan Básico / Imperial</h3>
-                            <p class="precio">$28,900 MXN</p>
-                            <ul>
-                                <li>Cobertura funeraria básica</li>
-                                <li>Atención las 24 horas</li>
-                                <li>Traslado municipal</li>
-                            </ul>
-                        </div>
-                    </label>
-
-                    <label class="card-plan">
-                        <input type="radio" name="plan" value="Premium" data-costo="32900">
-                        <div class="card-content">
-                            <h3>Plan Premium</h3>
-                            <p class="precio">$32,900 MXN</p>
-                            <ul>
-                                <li>Cobertura funeraria integral</li>
-                                <li>Servicios de velación preferenciales</li>
-                                <li>Asistencia personalizada</li>
-                            </ul>
-                        </div>
-                    </label>
-                </div>
-            </fieldset>
-
-            <!-- Esquema de Pagos -->
-            <fieldset>
-                <legend>Esquema de Aportación</legend>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="inversionInicial">Aportación Inicial (Mínimo $200 MXN) *</label>
-                        <input type="number" id="inversionInicial" min="200" value="200" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="frecuenciaAportacion">Frecuencia de Aportación *</label>
-                        <select id="frecuenciaAportacion" required>
-                            <option value="Semanal - $150">Semanal ($150 MXN)</option>
-                            <option value="Quincenal - $300">Quincenal ($300 MXN)</option>
-                            <option value="Mensual - $600">Mensual ($600 MXN)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="resumen-pago">
-                    <p>Total a afiliar: <strong id="totalPlan">$28,900 MXN</strong></p>
-                    <p>Saldo pendiente estimado: <strong id="saldoPendiente">$28,700 MXN</strong></p>
-                </div>
-            </fieldset>
-
-            <button type="submit" class="btn-submit">Completar Registro de Afiliación</button>
-        </form>
-    </section>
-
-    <!-- Asistente Interactivo (Chatbot) -->
-    <div class="chat-widget">
-        <button id="chatToggle" class="chat-toggle">💬 Asistente PABS</button>
-        <div id="chatBox" class="chat-box hidden">
-            <div class="chat-header">
-                <span>Asistente Digital PABS</span>
-                <button id="chatClose">×</button>
-            </div>
-            <div id="chatMessages" class="chat-messages">
-                <div class="message bot">
-                    Hola, bienvenido al portal de afiliación PABS. ¿En qué puedo ayudarte hoy?
-                </div>
-            </div>
-            <div class="chat-options">
-                <button class="chat-opt" data-action="explicar_planes">¿Qué plan elegir?</button>
-                <button class="chat-opt" data-action="explicar_pagos">¿Cómo son las aportaciones?</button>
-                <button class="chat-opt" data-action="guiar_registro">¿Cómo afiliarme?</button>
-            </div>
-        </div>
+  <!-- HERO SECTION -->
+  <header class="bg-gradient-to-r from-blue-900 to-indigo-800 text-white py-16 px-6 text-center">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-3xl md:text-5xl font-extrabold mb-4">Protección y Tranquilidad para tu Familia</h1>
+      <p class="text-lg md:text-xl text-blue-100 mb-8">
+        Completa tu afiliación en línea en solo 2 minutos y descarga tu contrato firmado digitalmente al instante.
+      </p>
+      <a href="#cotizador" class="bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold py-3 px-8 rounded-full shadow-lg transition duration-200">
+        Iniciar Afiliación Interactiva
+      </a>
     </div>
+  </header>
 
-    <!-- Pie de página -->
-    <footer>
-        <p>&copy; 2026 Programa de Apoyo de Beneficio Social. Todos los derechos reservados.</p>
-    </footer>
+  <!-- VALOR AGREGADO / BENEFICIOS -->
+  <section class="max-w-6xl mx-auto py-12 px-6 grid md:grid-cols-3 gap-8">
+    <div class="bg-white p-6 rounded-xl shadow-md border border-slate-100">
+      <div class="text-blue-600 font-bold text-xl mb-2">⚡ Proceso 100% Digital</div>
+      <p class="text-slate-600 text-sm">Sin filas ni trámites manuales. Genera tu expediente completo desde la web.</p>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-md border border-slate-100">
+      <div class="text-blue-600 font-bold text-xl mb-2">🛡️ Cobertura Inmediata</div>
+      <p class="text-slate-600 text-sm">Tu número de folio y contrato quedan validados desde el momento de la descarga.</p>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-md border border-slate-100">
+      <div class="text-blue-600 font-bold text-xl mb-2">📄 Descarga Directa</div>
+      <p class="text-slate-600 text-sm">Obtén tu comprobante de afiliación oficial en formato PDF inmediatamente.</p>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
+  <!-- COTIZADOR Y AFILIACIÓN INTERACTIVA -->
+  <main id="cotizador" class="max-w-3xl mx-auto my-8 bg-white p-8 rounded-2xl shadow-xl border border-slate-200">
+    <h2 class="text-2xl font-bold text-slate-900 mb-6 text-center">Formulario de Afiliación Directa</h2>
+
+    <form id="afiliacionForm" onsubmit="generarContratoPDF(event)" class="space-y-6">
+      
+      <!-- Seccion Datos Personales -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">Nombre Completo</label>
+          <input type="text" id="nombre" required placeholder="Ej. Juan Pérez" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">Teléfono / WhatsApp</label>
+          <input type="tel" id="telefono" required placeholder="Ej. 664 123 4567" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">Correo Electrónico</label>
+          <input type="email" id="email" required placeholder="correo@ejemplo.com" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">Ciudad / Municipio</label>
+          <input type="text" id="ciudad" required placeholder="Ej. Tijuana" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+        </div>
+      </div>
+
+      <!-- Seleccion de Plan -->
+      <div>
+        <label class="block text-sm font-medium text-slate-700 mb-1">Tipo de Plan Seleccionado</label>
+        <select id="plan" onchange="actualizarResumen()" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+          <option value="Plan Individual - $250 MXN/mes">Plan Individual - $250 MXN/mes</option>
+          <option value="Plan Familiar Básico - $450 MXN/mes">Plan Familiar Básico - $450 MXN/mes</option>
+          <option value="Plan Preferencial Total - $750 MXN/mes">Plan Preferencial Total - $750 MXN/mes</option>
+        </select>
+      </div>
+
+      <!-- Resumen en vivo -->
+      <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
+        <h3 class="font-bold text-sm text-slate-700 uppercase tracking-wider mb-2">Resumen de Cobertura</h3>
+        <p id="resumenTexto" class="text-sm text-slate-600">Plan Individual con asistencia básica activa.</p>
+      </div>
+
+      <!-- Botón de Generación -->
+      <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-200 flex items-center justify-center gap-2">
+        <span>Confirmar y Descargar Contrato PDF</span>
+      </button>
+    </form>
+  </main>
+
+  <!-- SCRIPT PARA GENERAR EL PDF -->
+  <script>
+    function actualizarResumen() {
+      const plan = document.getElementById('plan').value;
+      const resumen = document.getElementById('resumenTexto');
+      resumen.textContent = `Has elegido: ${plan}. Incluye atención inmediata y respaldo garantizado.`;
+    }
+
+    function generarContratoPDF(event) {
+      event.preventDefault();
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      // Recopilar datos
+      const nombre = document.getElementById('nombre').value;
+      const telefono = document.getElementById('telefono').value;
+      const email = document.getElementById('email').value;
+      const ciudad = document.getElementById('ciudad').value;
+      const plan = document.getElementById('plan').value;
+      const folio = 'FOL-' + Math.floor(100000 + Math.random() * 900000);
+      const fecha = new Date().toLocaleDateString('es-MX');
+
+      // Diseño del PDF
+      doc.setFillColor(30, 58, 138); // Azul institucional
+      doc.rect(0, 0, 210, 30, 'F');
+
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(18);
+      doc.setFont('helvetica', 'bold');
+      doc.text('CONTRATO DE AFILIACIÓN Y COBERTURA', 15, 20);
+
+      doc.setTextColor(50, 50, 50);
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
+      doc.text(`Folio de Registro: ${folio}`, 140, 40);
+      doc.text(`Fecha de Emisión: ${fecha}`, 140, 46);
+
+      doc.setFontSize(14);
+      doc.setFont('helvetica', 'bold');
+      doc.text('1. Datos del Titular Afiliado', 15, 55);
+
+      doc.setFontSize(11);
+      doc.setFont('helvetica', 'normal');
+      doc.text(`Nombre Completo: ${nombre}`, 15, 65);
+      doc.text(`Teléfono: ${telefono}`, 15, 73);
+      doc.text(`Correo Electrónico: ${email}`, 15, 81);
+      doc.text(`Ciudad: ${ciudad}`, 15, 89);
+
+      doc.setFontSize(14);
+      doc.setFont('helvetica', 'bold');
+      doc.text('2. Detalles del Plan Seleccionado', 15, 105);
+
+      doc.setFontSize(11);
+      doc.setFont('helvetica', 'normal');
+      doc.text(`Plan Contratado: ${plan}`, 15, 115);
+      doc.text('Estatus: Afiliación Activa / Pre-autorizada', 15, 123);
+
+      doc.setFontSize(10);
+      doc.text('Términos y Condiciones:', 15, 140);
+      const clausula = 'Este documento valida el registro inicial del titular al programa de protección seleccionado. El afiliado goza de los derechos y beneficios estipulados en las cláusulas generales del servicio a partir de la fecha de emisión de este comprobante.';
+      doc.text(doc.splitTextToSize(clausula, 180), 15, 148);
+
+      // Firma digital simulación
+      doc.setDrawColor(150, 150, 150);
+      doc.line(15, 200, 85, 200);
+      doc.text('Firma Digital del Titular', 15, 206);
+
+      doc.line(125, 200, 195, 200);
+      doc.text('Representante de Servicios', 125, 206);
+
+      // Guardar PDF
+      doc.save(`Contrato_Afiliacion_${folio}.pdf`);
+    }
+  </script>
 </body>
 </html>
