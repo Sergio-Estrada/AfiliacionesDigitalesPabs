@@ -1,213 +1,484 @@
-<!DOCTYPE html>
+from weasyprint import HTML
+
+html_content = """<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PABS® | Programa de Apoyo de Beneficio Social - Afiliación Digital B.C.</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Digitalización de Contratos PABS - Región Norte (Fórmula Editable y Plazas)</title>
     <style>
-        :root {
-            --pabs-blue: #0d2c54;
-            --pabs-blue-light: #16427d;
-            --pabs-gold: #c69214;
-            --pabs-gold-hover: #a3770f;
-            --pabs-red: #b91c1c;
-            --bg-light: #f8fafc;
-            --text-dark: #1e293b;
-            --text-muted: #64748b;
+        @page {
+            size: A4;
+            margin: 10mm 8mm;
+            background-color: #ffffff;
         }
-
-        * {
+        *, *::before, *::after {
             box-sizing: border-box;
+        }
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 8.2pt;
+            line-height: 1.2;
+            color: #111;
             margin: 0;
             padding: 0;
-            font-family: 'Montserrat', sans-serif;
         }
-
-        body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.6;
+        .contract-page {
+            page-break-after: always;
         }
-
-        /* BARRA SUPERIOR */
-        .top-bar {
-            background-color: #081a33;
-            color: #ffffff;
-            padding: 8px 20px;
-            font-size: 0.82rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .contract-page:last-child {
+            page-break-after: auto;
         }
-
-        .btn-lock {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.3);
-            color: #d1d5db;
-            padding: 3px 10px;
-            font-size: 0.75rem;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: 0.2s;
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 6px;
         }
-
-        .btn-lock:hover {
-            background: rgba(255,255,255,0.1);
-            color: #ffffff;
+        .header-table td {
+            vertical-align: top;
         }
-
-        /* HEADER CORPORATIVO */
-        header {
-            background: #ffffff;
-            border-bottom: 3px solid var(--pabs-gold);
-            padding: 15px 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
         .logo-box {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            width: 25%;
+            font-weight: bold;
+            font-size: 10pt;
+            color: #1a365d;
         }
-
-        .logo-box img {
-            height: 52px;
-            width: auto;
+        .company-info {
+            width: 50%;
+            text-align: center;
+            font-size: 7pt;
         }
-
-        .company-title {
-            border-left: 2px solid #cbd5e1;
-            padding-left: 15px;
+        .folio-box {
+            width: 25%;
+            text-align: right;
+            font-size: 8.5pt;
+            font-weight: bold;
+            color: #c53030;
         }
-
-        .company-title h1 {
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: var(--pabs-blue);
+        .title-banner {
+            background-color: #1a365d;
+            color: #ffffff;
+            text-align: center;
+            font-weight: bold;
+            font-size: 9.5pt;
+            padding: 3px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-
-        .company-title p {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            font-weight: 600;
+        .field-tag {
+            background-color: #e2e8f0;
+            color: #2d3748;
+            font-size: 6.5pt;
+            padding: 1px 3px;
+            border-radius: 2px;
+            font-weight: normal;
         }
-
-        /* HERO BANNER */
-        .hero {
-            background: linear-gradient(135deg, var(--pabs-blue) 0%, var(--pabs-blue-light) 100%);
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .hero h2 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
-            font-size: 1rem;
-            max-width: 750px;
-            margin: 0 auto 15px auto;
-            color: #e2e8f0;
-            font-weight: 300;
-        }
-
-        .hero-badges {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            font-size: 0.82rem;
-        }
-
-        .hero-badge-item {
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            padding: 5px 14px;
-            border-radius: 20px;
-        }
-
-        /* CONTENEDOR PRINCIPAL */
-        .container {
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            color: var(--pabs-blue);
-            font-weight: 800;
-            font-size: 1.5rem;
-            margin-bottom: 25px;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 4px;
-            background: var(--pabs-gold);
-            margin: 8px auto 0 auto;
+        .admin-edit-tag {
+            background-color: #fefcbf;
+            color: #744210;
+            border: 1px dashed #d69e2e;
+            font-size: 6.5pt;
+            padding: 1px 4px;
+            font-weight: bold;
             border-radius: 2px;
         }
-
-        /* PLANES COMPARATIVOS */
-        .plans-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
+        .section-header {
+            font-weight: bold;
+            font-size: 8pt;
+            background-color: #edf2f7;
+            padding: 2px 5px;
+            border-left: 3px solid #1a365d;
+            margin-top: 5px;
+            margin-bottom: 3px;
         }
-
-        .plan-card {
-            background: #ffffff;
-            border-radius: 12px;
-            overflow: hidden;
+        p.clause {
+            text-align: justify;
+            margin: 2.5px 0;
+            font-size: 7.5pt;
+        }
+        .fill-line {
+            border-bottom: 1px solid #4a5568;
+            display: inline-block;
+            padding: 0 3px;
+            font-weight: bold;
+            color: #2b6cb0;
+        }
+        .admin-fill-line {
+            border-bottom: 1.5px solid #d69e2e;
+            background-color: #fffff0;
+            display: inline-block;
+            padding: 0 3px;
+            font-weight: bold;
+            color: #9b2c2c;
+        }
+        .services-list {
+            margin: 3px 0;
+            padding-left: 14px;
+            font-size: 7.2pt;
+        }
+        .services-list li {
+            margin-bottom: 1.5px;
+            text-align: justify;
+        }
+        .stub-box {
+            border: 1px dashed #4a5568;
+            padding: 6px;
+            margin-top: 8px;
+            background-color: #f7fafc;
+        }
+        .notice-box {
             border: 1px solid #e2e8f0;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-            display: flex;
-            flex-direction: column;
+            background-color: #f7fafc;
+            padding: 5px;
+            font-size: 6.8pt;
+            margin-top: 5px;
         }
-
-        .plan-card.featured {
-            border: 2px solid var(--pabs-gold);
+        .signature-table {
+            width: 100%;
+            margin-top: 12px;
+            border-collapse: collapse;
         }
-
-        .plan-badge-top {
-            background: var(--pabs-gold);
-            color: #ffffff;
+        .signature-table td {
+            width: 50%;
             text-align: center;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 4px;
-            text-transform: uppercase;
+            vertical-align: bottom;
+            padding-top: 20px;
+            font-size: 7.5pt;
         }
-
-        .plan-header {
-            background: var(--pabs-blue);
-            color: white;
-            padding: 20px;
-            text-align: center;
+        .signature-line {
+            border-top: 1px solid #1a1a1a;
+            width: 80%;
+            margin: 0 auto 3px auto;
         }
+        .admin-panel-info {
+            background-color: #fffaf0;
+            border: 1px solid #feebc8;
+            border-left: 4px solid #dd6b20;
+            padding: 6px 8px;
+            margin-bottom: 8px;
+            font-size: 7.2pt;
+            color: #7b341e;
+        }
+    </style>
+</head>
+<body>
 
-        .plan-price-box {
-            background: #f1f
+    <!-- ==================== CONTRATO 1: PLAN IMPERIAL (FRENTE) ==================== -->
+    <div class="contract-page">
+        
+        <div class="admin-panel-info">
+            <strong>CONFIGURACIÓN PRIVILEGIADA DE EDICIÓN Y REGIONALIZACIÓN NORTE:</strong><br>
+            • <strong>Plazas Habilitadas (Selección Múltiple):</strong> Tecate, Tijuana, Rosarito y Ensenada. <em>(Excluida Mexicali)</em>.<br>
+            • <strong>Permiso de Edición Exclusivo (Modo Asesor / Admin):</strong> Costo Total ($ / Letra) y Campo Libre Opcional habilitados para modificación manual o condicional.
+        </div>
+
+        <table class="header-table">
+            <tr>
+                <td class="logo-box">
+                    PROGRAMA DE APOYO<br>DE BENEFICIO SOCIAL®
+                </td>
+                <td class="company-info">
+                    <strong>SERVIFUT DE PREVENCION S.A. DE C.V.</strong><br>
+                    RFC: SPR241031EG6 | Región Norte (Tecate, Tijuana, Rosarito, Ensenada)<br>
+                    Calle 13 N° 1 Int. 4, Col. Espinoza, C.P. 21410, Tecate B.C.<br>
+                    Tels. 665 655 7823 y 665 654 5457 (24Hrs.)
+                </td>
+                <td class="folio-box">
+                    FOLIO / CLAVE:<br>
+                    <span style="font-size: 13pt; color: #c53030;">EFO1 - 3427</span>
+                </td>
+            </tr>
+        </table>
+
+        <div class="title-banner">SOLICITUD CONTRATO PLAN IMPERIAL</div>
+
+        <p class="clause">
+            En la ciudad de <span class="fill-line">[ Plaza: Tecate | Tijuana | Rosarito | Ensenada ]</span>, B.C. a los <span class="fill-line">[ Día ]</span> días del mes de <span class="fill-line">[ Mes ]</span> del <span class="fill-line">[ Año ]</span> comparecen por una parte <strong>SERVIFUT DE PREVENCION S.A. DE C.V.</strong> con domicilio en Calle 13 N° 1 Int. 4, Col. Espinoza, C.P. 21410 en adelante la empresa y por la otra <span class="fill-line">[ Nombre completo del Titular / Cliente ]</span> con domicilio en <span class="fill-line">[ Domicilio completo ]</span> estado civil <span class="fill-line">[ Estado Civil ]</span> en su calidad de titular - cliente, manifestando ambas partes su conformidad para celebrar un contrato de prestación de servicios funerarios bajo las siguientes declaraciones y cláusulas:
+        </p>
+
+        <div class="section-header">DECLARACIONES:</div>
+        <p class="clause"><strong>DECLARA LA EMPRESA:</strong> Ser una persona moral, que su actividad económica es la de proveer servicios funerarios a previsión de gran calidad al alcance de todos y que la persona que firme el presente contrato en su representación tiene la facultad legal suficiente para hacerlo.</p>
+        <p class="clause"><strong>DECLARA EL CLIENTE:</strong> Ser mayor de edad y que es su voluntad contratar de la empresa, los servicios funerarios a previsión descritos en las siguientes:</p>
+
+        <div class="section-header">CLÁUSULAS:</div>
+        <p class="clause"><strong>PRIMERA.- PLANES FUNERARIOS, ADQUISICIÓN DEL PLAN.-</strong> A través de la firma del presente contrato, el "Titular" acepta estar adquiriendo el <strong>PLAN IMPERIAL</strong> con el que cuenta la empresa.</p>
+        <p class="clause"><strong>SEGUNDA.- DERECHOS DEL CONTRATO.-</strong> De conformidad al plan contratado, el CLIENTE es la única persona que se reconoce como "Titular" del contrato y quien recibe todos los beneficios aquí mencionados.</p>
+        <p class="clause">La prestación de los servicios funerarios materia de este contrato puede ser transferida a persona distinta al "Titular" a petición expresa por escrito de este. En el entendido de que únicamente el "Titular" podrá ser quién autorice transferir su servicio.</p>
+        <p class="clause">En caso de muerte o incapacidad del "Titular" que le impida cumplir con las obligaciones del presente contrato, al momento de ser requerido el servicio se deberán cubrir los importes que no hayan sido pagados, pudiendo la empresa solicitarlo a la persona que solicite el servicio.</p>
+
+        <p class="clause">
+            <strong>TERCERA.- COSTO TOTAL Y APORTACIONES.-</strong> El valor total de este contrato es de 
+            <span class="admin-fill-line">$ [ EDITABLE ADMIN: Costo Total Numérico ]</span> 
+            (<span class="admin-fill-line">[ EDITABLE ADMIN: Costo Total en Letra ]</span>) 
+            que acepta cubrir, con un pago inicial de <span class="fill-line">$ [ Pago Inicial ]</span> y pagos de <span class="fill-line">$ [ Parcialidad ]</span> a cubrir de manera <span class="fill-line">[ Frecuencia: Semanal / Quincenal / Mensual ]</span>, sin cargo de intereses en nuestras oficinas autorizadas para recibir aportaciones.
+            <span class="admin-edit-tag">🔒 CAMPO PRIVADO EDITABLE SOLO POR ASESOR / ADMIN</span>
+        </p>
+        
+        <p class="clause">
+            <strong>OBSERVACIONES / CONDICIONES ESPECIALES EXCLUSIVAS:</strong><br>
+            <span class="admin-fill-line" style="width: 98%; min-height: 16px;">[ OPCIÓN LIBRE EDITABLE EXCLUSIVA PARA SERGIO / ADMIN: Convenios, promociones especiales, ajustes de cobertura o notas del ejecutivo ]</span>
+        </p>
+
+        <p class="clause">El "Titular" acuerda que los abonos efectuados a este contrato serán a favor exclusivo del presente compromiso aquí establecido, acordando que no podrá ser utilizado para traspasar o dividir lo que llevara abonado a un contrato distinto al presente, salvo en caso de solicitar el cambio a un contrato de costo mayor, para ello deberá de estar al corriente con sus aportaciones.</p>
+        <p class="clause">Para los casos de aclaraciones, confirmaciones y otros referentes con su saldo, el "Titular" deberá mostrar sus recibos originales por lo que la EMPRESA desconoce toda aportación realizada en cualquier tipo de documento diferente al recibo de cobro original de la EMPRESA.</p>
+
+        <p class="clause"><strong>CUARTA.- SEGURO POR MUERTE ACCIDENTAL INSTANTÁNEA.-</strong> La EMPRESA se compromete a otorgar un "seguro por muerte accidental instantánea", para el caso de que el "Titular" falleciera accidentalmente y de manera instantánea en el evento; comprometiéndose la EMPRESA a prestar el servicio aquí contratado quedando automáticamente liquidado el saldo que corresponda al costo del Plan utilizado, además de hacerse responsable del trámite y pago por los honorarios gubernamentales que se generen.</p>
+
+        <p class="clause"><strong>QUINTA.- PAGO AL MOMENTO DE REQUERIR UN SERVICIO.-</strong> Si el servicio contenido en este contrato fuera requerido antes de haber sido cubierto su importe totalmente, el SOLICITANTE está conforme que para poder hacer uso del mismo, deberá de CUBRIR o SALDAR el costo total del servicio solicitado.</p>
+
+        <div style="text-align: right; font-size: 7.2pt; font-style: italic; margin-top: 3px;">CONTINUA AL REVERSO</div>
+
+        <!-- TALÓN DE INVERSIÓN INICIAL -->
+        <div class="stub-box">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 30%;"><strong style="color: #1a365d;">PROGRAMA DE APOYO DE BENEFICIO SOCIAL®</strong></td>
+                    <td style="width: 45%; font-size: 6.8pt; text-align: center;">
+                        <strong>SERVIFUT DE PREVENCION S.A. DE C.V.</strong><br>
+                        Región Norte: Tecate | Tijuana | Rosarito | Ensenada<br>
+                        Calle 13 N° 1 Int. 4, Col. Espinoza, C.P. 21410, Tecate B.C.
+                    </td>
+                    <td style="width: 25%; text-align: right; font-weight: bold; color: #c53030;">
+                        FOLIO RECIBO:<br>EFO1 - 3427
+                    </td>
+                </tr>
+            </table>
+            <div style="margin-top: 4px; font-size: 7.5pt;">
+                Plaza: <span class="fill-line" style="width: 25%;">[ Tecate / Tijuana / Rosarito / Ensenada ]</span> | Fecha: <span class="fill-line" style="width: 20%;">[ Fecha ]</span><br>
+                Recibí de: <span class="fill-line" style="width: 70%;">[ Nombre del Cliente ]</span><br>
+                La cantidad de: <span class="fill-line" style="width: 35%;">$ [ Monto Inicial ]</span> Por concepto de: <span class="fill-line" style="width: 30%;">INVERSIÓN INICIAL</span><br>
+                Cantidad con Letra: <span class="fill-line" style="width: 80%;">[ Monto en Letra ]</span>
+            </div>
+            <table class="signature-table" style="margin-top: 6px;">
+                <tr>
+                    <td>
+                        <div class="signature-line"></div>
+                        RECIBÍ (FIRMA AUTORIZADA PABS)
+                    </td>
+                    <td>
+                        <div class="signature-line"></div>
+                        ORIGINAL CLIENTE
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ==================== CONTRATO 1: PLAN IMPERIAL (REVERSO) ==================== -->
+    <div class="contract-page">
+        <div class="section-header">CLÁUSULAS (CONTINUACIÓN - REVERSO):</div>
+
+        <p class="clause">En el supuesto de que los abonos pactados no se cubran oportunamente y exista un atraso acumulado de 30 días, de acuerdo a lo established en la CLÁUSULA TERCERA, se dará por terminado el acuerdo de pago a plazos, conviniendo ambas partes que la cantidad que se haya entregado quede como depósito a favor del "Titular", a cuenta del servicio funerario que pudiese requerir el Titular a futuro.</p>
+
+        <p class="clause"><strong>SEXTA.- PRESTACIÓN DE LOS SERVICIOS.-</strong> El servicio funerario que se proporciona al "Titular" será por conducto de "Latinoamericana Recinto Funerario" con Domicilio en Blvd. Defensores de Baja California N° 470 Col. Downey y/o filiales establecidas en el país, con horario establecido las 24 horas del día los 365 días del año, tales servicios consisten en:</p>
+        
+        <ol type="a" class="services-list">
+            <li>Levantamiento de la persona fallecida desde cualquier unidad médica o domicilio particular en los municipios de la Región Norte (Tecate, Tijuana, Rosarito, Ensenada).</li>
+            <li>Servicio de preparación e higienización.</li>
+            <li>Servicio de carroza de lujo para el traslado de la persona fallecida al cementerio.</li>
+            <li>Servicio de cafetería Gourmet QUE INCLUYE: café expreso, capuchino, americano, té, galletas, brownies y refresco.</li>
+            <li>Arreglo estético para velación (no incluye Embalsamación).</li>
+            <li>Asesoría en trámites de defunción.</li>
+            <li>Gestoría en trámites de defunción (No incluye costos de Impuestos Municipales y Estatales).</li>
+            <li>Cien esquelas personalizadas (Recuerdos familiares).</li>
+            <li>Libro de Registro.</li>
+            <li>Ataúd de madera de lujo Modelo Premium.</li>
+            <li>Servicio de cremación opcional (No incluye el pago por permiso de cremación).</li>
+            <li>Ataúd de madera de lujo para uso exclusivo de velación (en caso de cremación).</li>
+            <li>Una urna modelo Imperial (Solo en servicio de cremación).</li>
+            <li>Internet inalámbrico en capilla.</li>
+            <li>Maquillaje profesional de la persona fallecida.</li>
+            <li>Seguro por muerte accidental instantánea.</li>
+            <li>Trámite y pago de honorarios gubernamentales en caso de muerte accidental instantánea.</li>
+            <li>Crucifijo memorial PABS®.</li>
+            <li>Servicio de transmisión de velación virtual vía internet.</li>
+            <li>Acompañamiento musical religioso en capilla.</li>
+            <li>Primera sesión del Taller de Tanatología sin costo.</li>
+            <li>Cobertura en la red nacional que integran las diferentes filiales del Programa de Apoyo de Beneficio Social®.</li>
+        </ol>
+
+        <p class="clause"><strong>SÉPTIMA.- SERVICIOS ADICIONALES.-</strong> Se podrán solicitar servicios adicionales, mismos que serán prestados por conducto de "Latinoamericana Recinto Funerario" y red Nacional de Funerarias afiliadas, cobrados por separado cuando excedan el radio de cobertura asignado.</p>
+        <p class="clause"><strong>OCTAVA.- HACER USO DE LOS SERVICIOS.-</strong> Para hacer efectivo el servicio contratado, el titular y/o solicitante deberá presentarse personalmente en las instalaciones correspondientes con la documentación requerida.</p>
+        <p class="clause"><strong>NOVENA.- BENEFICIO EN CAMBIO DE URNA O ATAÚD.-</strong> Por ser afiliado al Programa de Apoyo de Beneficio Social® podrá ser acreedor de hasta un 50% de descuento al solicitar modelos de categoría superior.</p>
+        <p class="clause"><strong>DÉCIMA.- VIGENCIA.-</strong> La vigencia de este contrato termina con la prestación de la totalidad del servicio funerario contratado.</p>
+        <p class="clause"><strong>DÉCIMA PRIMERA.- CANCELACIÓN.-</strong> Plazo de cinco días hábiles en base a la NOM-36-SCFI-2007.</p>
+
+        <p class="clause">Ambas partes firman por duplicado en la plaza de <span class="fill-line">[ Tecate | Tijuana | Rosarito | Ensenada ]</span>, B.C.</p>
+
+        <p class="clause"><strong>DÉCIMA SEGUNDA.- DESIGNACIÓN DE BENEFICIARIO.-</strong></p>
+        <div style="margin: 6px 0; font-size: 7.5pt;">
+            Beneficiario: <span class="fill-line" style="width: 50%;">[ Nombre Completo del Beneficiario ]</span><br>
+            Parentesco / Teléfono: <span class="fill-line" style="width: 45%;">[ Parentesco ] / [ Teléfono ]</span>
+        </div>
+
+        <table class="signature-table">
+            <tr>
+                <td>
+                    <div class="signature-line"></div>
+                    Titular (Firma)
+                </td>
+                <td>
+                    <div class="signature-line"></div>
+                    La Empresa (Firma Autorizada)
+                </td>
+            </tr>
+        </table>
+
+        <div class="notice-box" style="margin-top: 10px;">
+            <strong>Condiciones de Activación:</strong> Inicio de vigencia tras la llamada de confirmación de PABS.
+        </div>
+        <div style="text-align: right; font-size: 6.5pt; margin-top: 4px; color: #718096;">Código de Formato: TKT-108-0225-NORTE</div>
+    </div>
+
+    <!-- ==================== CONTRATO 2: PLAN PREMIUM (FRENTE) ==================== -->
+    <div class="contract-page">
+
+        <div class="admin-panel-info">
+            <strong>CONFIGURACIÓN PRIVILEGIADA DE EDICIÓN Y REGIONALIZACIÓN NORTE:</strong><br>
+            • <strong>Plazas Habilitadas (Selección Múltiple):</strong> Tecate, Tijuana, Rosarito y Ensenada. <em>(Excluida Mexicali)</em>.<br>
+            • <strong>Permiso de Edición Exclusivo (Modo Asesor / Admin):</strong> Costo Total ($ / Letra) y Campo Libre Opcional habilitados para modificación manual o condicional.
+        </div>
+
+        <table class="header-table">
+            <tr>
+                <td class="logo-box">
+                    PROGRAMA DE APOYO<br>DE BENEFICIO SOCIAL®
+                </td>
+                <td class="company-info">
+                    <strong>SERVIFUT DE PREVENCION S.A. DE C.V.</strong><br>
+                    RFC: SPR241031EG6 | Región Norte (Tecate, Tijuana, Rosarito, Ensenada)<br>
+                    Calle 13 N° 1 Int. 4, Col. Espinoza, C.P. 21410, Tecate B.C.<br>
+                    Tels. 665 655 7823 y 665 654 5457 (24Hrs.)
+                </td>
+                <td class="folio-box">
+                    FOLIO / CLAVE:<br>
+                    <span style="font-size: 13pt; color: #c53030;">EFO2 - 0681</span>
+                </td>
+            </tr>
+        </table>
+
+        <div class="title-banner">SOLICITUD CONTRATO PLAN PREMIUM</div>
+
+        <p class="clause">
+            En la ciudad de <span class="fill-line">[ Plaza: Tecate | Tijuana | Rosarito | Ensenada ]</span>, B.C. a los <span class="fill-line">[ Día ]</span> días del mes de <span class="fill-line">[ Mes ]</span> del <span class="fill-line">[ Año ]</span> comparecen por una parte <strong>SERVIFUT DE PREVENCION S.A. DE C.V.</strong> con domicilio en Calle 13 N° 1 Int. 4, Col. Espinoza, C.P. 21410 en adelante la empresa y por la otra <span class="fill-line">[ Nombre del Titular ]</span> con domicilio en <span class="fill-line">[ Domicilio completo ]</span> estado civil <span class="fill-line">[ Estado Civil ]</span> en su calidad de titular - cliente, manifestando ambas partes su conformidad para celebrar un contrato de prestación de servicios funerarios bajo las siguientes declaraciones y cláusulas:
+        </p>
+
+        <div class="section-header">DECLARACIONES:</div>
+        <p class="clause"><strong>DECLARA LA EMPRESA:</strong> Ser una persona moral, que su actividad económica es la de proveer servicios funerarios a previsión de gran calidad al alcance de todos y que la persona que firme el presente contrato en su representación tiene la facultad legal suficiente para hacerlo.</p>
+        <p class="clause"><strong>DECLARA EL CLIENTE:</strong> Ser mayor de edad y que es su voluntad contratar de la empresa, los servicios funerarios a previsión descritos en las siguientes:</p>
+
+        <div class="section-header">CLÁUSULAS:</div>
+        <p class="clause"><strong>PRIMERA.- PLANES FUNERARIOS, ADQUISICIÓN DEL PLAN.-</strong> A través de la firma del presente contrato, el "Titular" acepta estar adquiriendo el <strong>PLAN PREMIUM</strong> con el que cuenta la empresa.</p>
+        <p class="clause"><strong>SEGUNDA.- DERECHOS DEL CONTRATO.-</strong> De conformidad al plan contratado, el CLIENTE es la única persona que se reconoce como "Titular" del contrato y quien recibe todos los beneficios aquí mencionados.</p>
+
+        <p class="clause">
+            <strong>TERCERA.- COSTO TOTAL Y APORTACIONES.-</strong> El valor total de este contrato es de 
+            <span class="admin-fill-line">$ [ EDITABLE ADMIN: Costo Total Numérico ]</span> 
+            (<span class="admin-fill-line">[ EDITABLE ADMIN: Costo Total en Letra ]</span>) 
+            que acepta cubrir, con un pago inicial de <span class="fill-line">$ [ Pago Inicial ]</span> y pagos de <span class="fill-line">$ [ Parcialidad ]</span> a cubrir de manera <span class="fill-line">[ Frecuencia ]</span>, sin cargo de intereses en nuestras oficinas autorizadas para recibir aportaciones.
+            <span class="admin-edit-tag">🔒 CAMPO PRIVADO EDITABLE SOLO POR ASESOR / ADMIN</span>
+        </p>
+
+        <p class="clause">
+            <strong>OBSERVACIONES / CONDICIONES ESPECIALES EXCLUSIVAS:</strong><br>
+            <span class="admin-fill-line" style="width: 98%; min-height: 16px;">[ OPCIÓN LIBRE EDITABLE EXCLUSIVA PARA SERGIO / ADMIN: Convenios, promociones especiales, ajustes de cobertura o notas del ejecutivo ]</span>
+        </p>
+
+        <p class="clause"><strong>CUARTA.- SEGURO POR MUERTE ACCIDENTAL INSTANTÁNEA.-</strong> La EMPRESA se compromete a otorgar un "seguro por muerte accidental instantánea", para el caso de que el "Titular" falleciera accidentalmente y de manera instantánea en el evento; comprometiéndose la EMPRESA a prestar el servicio aquí contratado quedando automáticamente liquidado el saldo que corresponda al costo del Plan utilizado.</p>
+
+        <p class="clause"><strong>QUINTA.- PAGO AL MOMENTO DE REQUERIR UN SERVICIO.-</strong> Si el servicio contenido en este contrato fuera requerido antes de haber sido cubierto su importe totalmente, el SOLICITANTE está conforme que para poder hacer uso del mismo, deberá de CUBRIR o SALDAR el costo total del servicio solicitado.</p>
+
+        <div style="text-align: right; font-size: 7.2pt; font-style: italic; margin-top: 3px;">CONTINUA AL REVERSO</div>
+
+        <!-- TALÓN DE INVERSIÓN INICIAL -->
+        <div class="stub-box">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 30%;"><strong style="color: #1a365d;">PROGRAMA DE APOYO DE BENEFICIO SOCIAL®</strong></td>
+                    <td style="width: 45%; font-size: 6.8pt; text-align: center;">
+                        <strong>SERVIFUT DE PREVENCION S.A. DE C.V.</strong><br>
+                        Región Norte: Tecate | Tijuana | Rosarito | Ensenada<br>
+                        Calle 13 N° 1 Int. 4, Col. Espinoza, C.P. 21410, Tecate B.C.
+                    </td>
+                    <td style="width: 25%; text-align: right; font-weight: bold; color: #c53030;">
+                        FOLIO RECIBO:<br>EFO2 - 0681
+                    </td>
+                </tr>
+            </table>
+            <div style="margin-top: 4px; font-size: 7.5pt;">
+                Plaza: <span class="fill-line" style="width: 25%;">[ Tecate / Tijuana / Rosarito / Ensenada ]</span> | Fecha: <span class="fill-line" style="width: 20%;">[ Fecha ]</span><br>
+                Recibí de: <span class="fill-line" style="width: 70%;">[ Nombre del Cliente ]</span><br>
+                La cantidad de: <span class="fill-line" style="width: 35%;">$ [ Monto Inicial ]</span> Por concepto de: <span class="fill-line" style="width: 30%;">INVERSIÓN INICIAL</span><br>
+                Cantidad con Letra: <span class="fill-line" style="width: 80%;">[ Monto en Letra ]</span>
+            </div>
+            <table class="signature-table" style="margin-top: 6px;">
+                <tr>
+                    <td>
+                        <div class="signature-line"></div>
+                        RECIBÍ (FIRMA AUTORIZADA)
+                    </td>
+                    <td>
+                        <div class="signature-line"></div>
+                        ORIGINAL CLIENTE
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ==================== CONTRATO 2: PLAN PREMIUM (REVERSO) ==================== -->
+    <div class="contract-page">
+        <div class="section-header">CLÁUSULAS (CONTINUACIÓN - REVERSO):</div>
+
+        <p class="clause"><strong>SEXTA.- PRESTACIÓN DE LOS SERVICIOS.-</strong> El servicio funerario que se proporciona al "Titular" será por conducto de "Latinoamericana Recinto Funerario" con Domicilio en Blvd. Defensores de Baja California N° 470 Col. Downey y/o filiales establecidas en la Región Norte (Tecate, Tijuana, Rosarito, Ensenada).</p>
+        
+        <ol type="a" class="services-list">
+            <li>Levantamiento de la persona fallecida en el municipio correspondiente.</li>
+            <li>Servicio de preparación e higienización.</li>
+            <li>Servicio de carroza de lujo.</li>
+            <li>Servicio de cafetería Premium (café expreso, capuchino, té, galletas, brownies, refrescos).</li>
+            <li>Arreglo estético para velación.</li>
+            <li>Asesoría y gestoría en trámites de defunción.</li>
+            <li>Cien esquelas personalizadas.</li>
+            <li>Libro de Registro.</li>
+            <li>Ataúd de madera de lujo Modelo Premium.</li>
+            <li>Servicio de cremación opcional.</li>
+            <li>Ataúd de velación y Urna Premium.</li>
+            <li>Maquillaje profesional.</li>
+            <li>Seguro por muerte accidental instantánea.</li>
+            <li>Crucifijo memorial PABS®, transmisión virtual y tanatología.</li>
+        </ol>
+
+        <p class="clause">Ambas partes firman por duplicado en la plaza de <span class="fill-line">[ Tecate | Tijuana | Rosarito | Ensenada ]</span>, B.C.</p>
+
+        <p class="clause"><strong>DÉCIMA SEGUNDA.- DESIGNACIÓN DE BENEFICIARIO.-</strong></p>
+        <div style="margin: 6px 0; font-size: 7.5pt;">
+            Beneficiario: <span class="fill-line" style="width: 50%;">[ Nombre Completo del Beneficiario ]</span><br>
+            Parentesco / Teléfono: <span class="fill-line" style="width: 45%;">[ Parentesco ] / [ Teléfono ]</span>
+        </div>
+
+        <table class="signature-table">
+            <tr>
+                <td>
+                    <div class="signature-line"></div>
+                    Titular (Firma)
+                </td>
+                <td>
+                    <div class="signature-line"></div>
+                    La Empresa (Firma Autorizada)
+                </td>
+            </tr>
+        </table>
+        <div style="text-align: right; font-size: 6.5pt; margin-top: 8px; color: #718096;">Código de Formato: TKT-109-0225-NORTE</div>
+    </div>
+
+</body>
+</html>
+"""
+
+# Guardar y generar PDF
+with open("Contratos_PABS_Region_Norte_Editables.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+HTML("Contratos_PABS_Region_Norte_Editables.html").write_pdf("Contratos_PABS_Region_Norte_Editables.pdf")
+print("PDF actualizado generado con éxito.")
