@@ -1,371 +1,22 @@
-/
-├── index.html
-├── styles.css
-└── script.js
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Afiliación Digital - Programa de Apoyo de Beneficio Social</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-</head>
-<body>
-
-    <!-- Encabezado y Navegación -->
-    <header class="navbar">
-        <div class="logo-container">
-            <span class="logo-text">PABS</span>
-            <span class="sub-text">Programa de Apoyo de Beneficio Social</span>
-        </div>
-        <nav>
-            <a href="#inicio">Inicio</a>
-            <a href="#planes">Planes</a>
-            <a href="#registro" class="btn-nav">Afiliarme Ahora</a>
-        </nav>
-    </header>
-
-    <!-- Banner Principal -->
-    <section id="inicio" class="hero">
-        <div class="hero-content">
-            <h1>Protege el futuro de tu familia de forma digital</h1>
-            <p>Afilia tu plan de apoyo previsor hoy mismo con cuotas accesibles y flexibilidad de pago.</p>
-            <a href="#registro" class="btn-primary">Iniciar Afiliación</a>
-        </div>
-    </section>
-
-    <!-- Sección de Registro / Afiliación -->
-    <section id="registro" class="form-section">
-        <h2>Formulario Digital de Afiliación</h2>
-        <p class="section-subtitle">Completa los campos a continuación para procesar tu afiliación</p>
-
-        <form id="afiliacionForm">
-            <!-- Datos Personales -->
-            <fieldset>
-                <legend>Datos del Afiliado</legend>
-                
-                <div class="form-group">
-                    <label for="nombreCompleto">Nombre Completo *</label>
-                    <input type="text" id="nombreCompleto" required placeholder="Ej. Juan Pérez González">
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="telefono">Teléfono *</label>
-                        <input type="tel" id="telefono" required placeholder="10 dígitos">
-                    </div>
-                    <div class="form-group">
-                        <label for="whatsapp">WhatsApp *</label>
-                        <input type="tel" id="whatsapp" required placeholder="10 dígitos">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="fechaNacimiento">Fecha de Nacimiento *</label>
-                        <input type="date" id="fechaNacimiento" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="estadoCivil">Estado Civil *</label>
-                        <select id="estadoCivil" required>
-                            <option value="">Selecciona...</option>
-                            <option value="Soltero/a">Soltero/a</option>
-                            <option value="Casado/a">Casado/a</option>
-                            <option value="Divorciado/a">Divorciado/a</option>
-                            <option value="Viudo/a">Viudo/a</option>
-                            <option value="Unión Libre">Unión Libre</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="domicilioCobro">Domicilio de Cobro *</label>
-                    <input type="text" id="domicilioCobro" required placeholder="Calle, número, colonia, código postal y referencias">
-                </div>
-            </fieldset>
-
-            <!-- Selección de Plan -->
-            <fieldset>
-                <legend>Selección de Plan</legend>
-                <div class="planes-grid">
-                    <label class="card-plan">
-                        <input type="radio" name="plan" value="Básico Imperial" data-costo="28900" checked>
-                        <div class="card-content">
-                            <h3>Plan Básico / Imperial</h3>
-                            <p class="precio">$28,900 MXN</p>
-                            <ul>
-                                <li>Cobertura funeraria básica</li>
-                                <li>Atención las 24 horas</li>
-                                <li>Traslado municipal</li>
-                            </ul>
-                        </div>
-                    </label>
-
-                    <label class="card-plan">
-                        <input type="radio" name="plan" value="Premium" data-costo="32900">
-                        <div class="card-content">
-                            <h3>Plan Premium</h3>
-                            <p class="precio">$32,900 MXN</p>
-                            <ul>
-                                <li>Cobertura funeraria integral</li>
-                                <li>Servicios de velación preferenciales</li>
-                                <li>Asistencia personalizada</li>
-                            </ul>
-                        </div>
-                    </label>
-                </div>
-            </fieldset>
-
-            <!-- Esquema de Pagos -->
-            <fieldset>
-                <legend>Esquema de Aportación</legend>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="inversionInicial">Aportación Inicial (Mínimo $200 MXN) *</label>
-                        <input type="number" id="inversionInicial" min="200" value="200" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="frecuenciaAportacion">Frecuencia de Aportación *</label>
-                        <select id="frecuenciaAportacion" required>
-                            <option value="Semanal - $150">Semanal ($150 MXN)</option>
-                            <option value="Quincenal - $300">Quincenal ($300 MXN)</option>
-                            <option value="Mensual - $600">Mensual ($600 MXN)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="resumen-pago">
-                    <p>Total a afiliar: <strong id="totalPlan">$28,900 MXN</strong></p>
-                    <p>Saldo pendiente estimado: <strong id="saldoPendiente">$28,700 MXN</strong></p>
-                </div>
-            </fieldset>
-
-            <button type="submit" class="btn-submit">Completar Registro de Afiliación</button>
-        </form>
-    </section>
-
-    <!-- Asistente Interactivo (Chatbot) -->
-    <div class="chat-widget">
-        <button id="chatToggle" class="chat-toggle">💬 Asistente PABS</button>
-        <div id="chatBox" class="chat-box hidden">
-            <div class="chat-header">
-                <span>Asistente Digital PABS</span>
-                <button id="chatClose">×</button>
-            </div>
-            <div id="chatMessages" class="chat-messages">
-                <div class="message bot">
-                    Hola, bienvenido al portal de afiliación PABS. ¿En qué puedo ayudarte hoy?
-                </div>
-            </div>
-            <div class="chat-options">
-                <button class="chat-opt" data-action="explicar_planes">¿Qué plan elegir?</button>
-                <button class="chat-opt" data-action="explicar_pagos">¿Cómo son las aportaciones?</button>
-                <button class="chat-opt" data-action="guiar_registro">¿Cómo afiliarme?</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Pie de página -->
-    <footer>
-        <p>&copy; 2026 Programa de Apoyo de Beneficio Social. Todos los derechos reservados.</p>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-}
-
-body {
-    background-color: #f4f6f8;
-    color: #333;
-}
-
-/* Header & Navbar */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #0d2c54;
-    color: white;
-    padding: 1rem 2rem;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.logo-container {
+<!-- Reemplaza el botón final dentro de #afiliacionForm en index.html -->
+<div class="form-actions">
+    <button type="submit" class="btn-submit">Completar Registro Digital</button>
+    <button type="button" id="btnWhatsapp" class="btn-whatsapp">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.012 2c-5.508 0-9.989 4.481-9.989 9.989 0 1.761.459 3.477 1.332 4.992l-1.415 5.17 5.291-1.387c1.464.799 3.116 1.215 4.781 1.215 5.508 0 9.989-4.481 9.989-9.989 0-5.508-4.481-9.989-9.989-9.989zm5.82 14.28c-.244.686-1.417 1.309-1.96 1.363-.519.052-1.189.243-3.896-.856-3.461-1.402-5.688-4.931-5.861-5.161-.173-.23-1.401-1.865-1.401-3.558 0-1.693.886-2.524 1.202-2.868.316-.345.69-.431.92-.431.23 0 .46.002.661.012.213.01.498-.081.776.587.288.691.978 2.387 1.064 2.56.086.173.144.374.029.604-.115.23-.173.374-.345.575-.173.201-.365.449-.521.604-.173.173-.353.361-.152.706.201.345.894 1.477 1.92 2.392 1.319 1.176 2.43 1.542 2.775 1.714.345.173.546.144.747-.086.201-.23.863-.1.007 1.093-1.208.23-.201.46-.316.747-.316s.604.086.863.23c.259.144 1.638.805 1.926.949.288.144.483.23.551.345.068.115.068.662-.176 1.348z"/>
+        </svg>
+        Enviar Registro por WhatsApp
+    </button>
+</div>.form-actions {
     display: flex;
     flex-direction: column;
-}
-
-.logo-text {
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
-
-.sub-text {
-    font-size: 0.75rem;
-    color: #a0c4ff;
-}
-
-.navbar nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 1.5rem;
-    font-size: 0.95rem;
-}
-
-.btn-nav {
-    background-color: #00a86b;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-weight: bold;
-}
-
-/* Hero Section */
-.hero {
-    background: linear-gradient(rgba(13, 44, 84, 0.8), rgba(13, 44, 84, 0.8)), url('https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1350&q=80');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    text-align: center;
-    padding: 5rem 1rem;
-}
-
-.hero h1 {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
-}
-
-.hero p {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-}
-
-.btn-primary {
-    background-color: #00a86b;
-    color: white;
-    padding: 0.8rem 2rem;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 1.1rem;
-    font-weight: bold;
-}
-
-/* Formulario */
-.form-section {
-    max-width: 800px;
-    margin: 2rem auto;
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-.form-section h2 {
-    color: #0d2c54;
-    text-align: center;
-}
-
-.section-subtitle {
-    text-align: center;
-    color: #666;
-    margin-bottom: 2rem;
-}
-
-fieldset {
-    border: 1px solid #e0e0e0;
-    padding: 1.5rem;
-    border-radius: 6px;
-    margin-bottom: 1.5rem;
-}
-
-legend {
-    font-weight: bold;
-    color: #0d2c54;
-    padding: 0 0.5rem;
-}
-
-.form-group {
-    margin-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-}
-
-label {
-    font-size: 0.9rem;
-    margin-bottom: 0.3rem;
-    font-weight: 500;
-}
-
-input, select {
-    padding: 0.6rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-}
-
-/* Planes Card */
-.planes-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-}
-
-.card-plan {
-    border: 2px solid #e0e0e0;
-    border-radius: 6px;
-    padding: 1rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.card-plan input {
-    margin-bottom: 0.5rem;
-}
-
-.card-plan:hover {
-    border-color: #00a86b;
-}
-
-.precio {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #0d2c54;
-    margin: 0.5rem 0;
-}
-
-.card-content ul {
-    list-style-type: none;
-    font-size: 0.85rem;
-    color: #555;
-}
-
-.resumen-pago {
-    background-color: #eef4fb;
-    padding: 1rem;
-    border-radius: 4px;
+    gap: 0.8rem;
     margin-top: 1rem;
 }
 
-.btn-submit {
+.btn-whatsapp {
     width: 100%;
-    background-color: #0d2c54;
+    background-color: #25d366;
     color: white;
     border: none;
     padding: 1rem;
@@ -373,200 +24,68 @@ input, select {
     font-weight: bold;
     border-radius: 4px;
     cursor: pointer;
-}
-
-.btn-submit:hover {
-    background-color: #16427b;
-}
-
-/* Asistente Interactivo */
-.chat-widget {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-}
-
-.chat-toggle {
-    background-color: #00a86b;
-    color: white;
-    border: none;
-    padding: 0.8rem 1.2rem;
-    border-radius: 25px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-.chat-box {
-    width: 320px;
-    height: 400px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
     display: flex;
-    flex-direction: column;
-    position: absolute;
-    bottom: 50px;
-    right: 0;
-    overflow: hidden;
-}
-
-.hidden {
-    display: none;
-}
-
-.chat-header {
-    background-color: #0d2c54;
-    color: white;
-    padding: 0.8rem;
-    display: flex;
-    justify-content: space-between;
-    font-weight: bold;
-}
-
-.chat-header button {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-}
-
-.chat-messages {
-    flex: 1;
-    padding: 0.8rem;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 0.5rem;
+    transition: background-color 0.2s ease;
 }
 
-.message {
-    padding: 0.5rem 0.8rem;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    max-width: 85%;
+.btn-whatsapp:hover {
+    background-color: #1eb857;
 }
 
-.message.bot {
-    background-color: #f0f0f0;
-    align-self: flex-start;
-}
+.btn-whatsapp svg {
+    fill: currentColor;
+}document.addEventListener('DOMContentLoaded', () => {
+    // Reemplazar con el número telefónico de atención PABS (incluir código de país, ej. 52 para México)
+    const NUMERO_TELEFONO_PABS = "526640000000"; 
 
-.message.user {
-    background-color: #0d2c54;
-    color: white;
-    align-self: flex-end;
-}
+    const btnWhatsapp = document.getElementById('btnWhatsapp');
 
-.chat-options {
-    padding: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    border-top: 1px solid #eee;
-}
+    btnWhatsapp.addEventListener('click', () => {
+        // Capturar valores del formulario
+        const nombre = document.getElementById('nombreCompleto').value.trim();
+        const telefono = document.getElementById('telefono').value.trim();
+        const whatsapp = document.getElementById('whatsapp').value.trim();
+        const fechaNacimiento = document.getElementById('fechaNacimiento').value;
+        const estadoCivil = document.getElementById('estadoCivil').value;
+        const domicilio = document.getElementById('domicilioCobro').value.trim();
+        
+        const plan = document.querySelector('input[name="plan"]:checked').value;
+        const costoPlan = document.querySelector('input[name="plan"]:checked').dataset.costo;
+        const inversionInicial = document.getElementById('inversionInicial').value;
+        const frecuencia = document.getElementById('frecuenciaAportacion').value;
 
-.chat-opt {
-    background: #eef4fb;
-    border: 1px solid #c2d8f2;
-    padding: 0.4rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    cursor: pointer;
-    text-align: left;
-}
-
-footer {
-    text-align: center;
-    padding: 1.5rem;
-    background-color: #0d2c54;
-    color: white;
-    font-size: 0.85rem;
-}
-
-@media (max-width: 600px) {
-    .form-row, .planes-grid {
-        grid-template-columns: 1fr;
-    }
-}
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('afiliacionForm');
-    const radiosPlan = document.querySelectorAll('input[name="plan"]');
-    const inversionInicialInput = document.getElementById('inversionInicial');
-    const totalPlanElem = document.getElementById('totalPlan');
-    const saldoPendienteElem = document.getElementById('saldoPendiente');
-
-    // Actualizar montos de forma dinámica
-    function calcularSaldos() {
-        const planSeleccionado = document.querySelector('input[name="plan"]:checked');
-        const costoTotal = parseFloat(planSeleccionado.dataset.costo);
-        const inversionInicial = parseFloat(inversionInicialInput.value) || 0;
-
-        const saldo = costoTotal - inversionInicial;
-
-        totalPlanElem.textContent = `$${costoTotal.toLocaleString('es-MX')} MXN`;
-        saldoPendienteElem.textContent = `$${Math.max(0, saldo).toLocaleString('es-MX')} MXN`;
-    }
-
-    radiosPlan.forEach(radio => radio.addEventListener('change', calcularSaldos));
-    inversionInicialInput.addEventListener('input', calcularSaldos);
-
-    // Validación del pago inicial mínimo ($200)
-    inversionInicialInput.addEventListener('blur', () => {
-        if (parseFloat(inversionInicialInput.value) < 200 || !inversionInicialInput.value) {
-            alert('La aportación inicial mínima es de $200 MXN.');
-            inversionInicialInput.value = 200;
-            calcularSaldos();
+        // Validación simple de campos obligatorios
+        if (!nombre || !telefono || !whatsapp || !domicilio || !fechaNacimiento || !estadoCivil) {
+            alert('Por favor, completa todos los campos del formulario antes de enviar por WhatsApp.');
+            return;
         }
+
+        // Construcción del mensaje con formato para WhatsApp
+        const mensaje = 
+`*NUEVA SOLICITUD DE AFILIACIÓN PABS*
+----------------------------------
+*DATOS DEL AFILIADO*
+👤 *Nombre:* ${nombre}
+📞 *Teléfono:* ${telefono}
+📱 *WhatsApp:* ${whatsapp}
+🎂 *Fecha Nacimiento:* ${fechaNacimiento}
+💍 *Estado Civil:* ${estadoCivil}
+🏠 *Domicilio Cobro:* ${domicilio}
+
+*DETALLES DEL PLAN*
+📋 *Plan Elegido:* ${plan} ($${parseInt(costoPlan).toLocaleString('es-MX')} MXN)
+💰 *Aportación Inicial:* $${parseFloat(inversionInicial).toLocaleString('es-MX')} MXN
+🔄 *Frecuencia:* ${frecuencia}
+----------------------------------
+_Enviado desde el portal de afiliación digital._`;
+
+        // Codificación de la URL para WhatsApp
+        const urlWhatsApp = `https://wa.me/${NUMERO_TELEFONO_PABS}?text=${encodeURIComponent(mensaje)}`;
+
+        // Abrir en nueva pestaña
+        window.open(urlWhatsApp, '_blank');
     });
-
-    // Envío del formulario
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('¡Registro enviado con éxito! Un ejecutivo de PABS se pondrá en contacto contigo.');
-    });
-
-    // Lógica del Asistente Interactivo (Chatbot)
-    const chatToggle = document.getElementById('chatToggle');
-    const chatClose = document.getElementById('chatClose');
-    const chatBox = document.getElementById('chatBox');
-    const chatMessages = document.getElementById('chatMessages');
-    const chatOptions = document.querySelectorAll('.chat-opt');
-
-    chatToggle.addEventListener('click', () => chatBox.classList.toggle('hidden'));
-    chatClose.addEventListener('click', () => chatBox.classList.add('hidden'));
-
-    const respuestas = {
-        explicar_planes: 'Ofrecemos dos modalidades: el Plan Básico / Imperial ($28,900 MXN) con servicios esenciales, y el Plan Premium ($32,900 MXN) con velación preferencial.',
-        explicar_pagos: 'Puedes realizar una aportación inicial desde $200 MXN y elegir la frecuencia de aportaciones: Semanal ($150), Quincenal ($300) o Mensual ($600).',
-        guiar_registro: 'Para afiliarte, simplemente llena tus datos en el formulario central, elige tu plan, define tu pago inicial y da clic en "Completar Registro de Afiliación".'
-    };
-
-    chatOptions.forEach(button => {
-        button.addEventListener('click', (e) => {
-            const action = e.target.dataset.action;
-            const userText = e.target.textContent;
-
-            // Agregar mensaje del usuario
-            appendMessage(userText, 'user');
-
-            // Respuesta automatizada
-            setTimeout(() => {
-                appendMessage(respuestas[action], 'bot');
-            }, 400);
-        });
-    });
-
-    function appendMessage(text, sender) {
-        const msgDiv = document.createElement('div');
-        msgDiv.classList.add('message', sender);
-        msgDiv.textContent = text;
-        chatMessages.appendChild(msgDiv);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    // Inicializar cálculo
-    calcularSaldos();
 });
