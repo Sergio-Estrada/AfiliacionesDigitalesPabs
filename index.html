@@ -1,293 +1,655 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PABS - Programa de Apoyo Beneficio Social</title>
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- jsPDF CDN para generación de contrato -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.min.js"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            pabs: {
-              green: '#005C3B',
-              darkgreen: '#003D27',
-              gold: '#D4AF37',
-              lightgold: '#F4E8C1'
-            }
-          }
-        }
-      }
-    }
-  </script>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        PABS | Afiliación y Protección Familiar
+    </title>
+
+    <meta
+        name="description"
+        content="Conoce PABS, recibe orientación y comienza tu proceso de afiliación.">
+
+    <link rel="stylesheet" href="style.css">
+
 </head>
-<body class="bg-slate-100 text-slate-800 font-sans">
 
-  <!-- ENCABEZADO INSTITUCIONAL -->
-  <header class="bg-pabs-green text-white border-b-4 border-pabs-gold shadow-lg sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <!-- LOGOTIPO PABS ESTILIZADO -->
-      <div class="flex items-center gap-3">
-        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center border-2 border-pabs-gold font-bold text-pabs-green text-xl shadow">
-          PABS
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <div class="brand">
+
+        <div class="brand-logo">
+            PABS
         </div>
-        <div>
-          <span class="text-xl md:text-2xl font-extrabold tracking-wide block leading-none">PABS</span>
-          <span class="text-xs text-pabs-gold tracking-wider uppercase font-semibold">Programa de Apoyo Beneficio Social</span>
+
+        <div class="brand-text">
+            Programa de Apoyo de Beneficio Social
         </div>
-      </div>
-      <a href="#solicitud" class="bg-pabs-gold hover:bg-yellow-500 text-pabs-darkgreen font-bold py-2 px-5 rounded-lg text-sm shadow transition">
-        Afiliarse Ahora
-      </a>
-    </div>
-  </header>
-
-  <!-- HERO SECTION -->
-  <section class="bg-gradient-to-b from-pabs-darkgreen to-pabs-green text-white py-12 px-4 text-center">
-    <div class="max-w-4xl mx-auto">
-      <h1 class="text-3xl md:text-5xl font-extrabold mb-4 text-pabs-gold">Tranquilidad y Protección para tu Familia</h1>
-      <p class="text-base md:text-lg text-slate-200 mb-6">
-        Obtén tu plan de previsión con una inversión inicial desde <span class="font-bold text-white bg-pabs-gold/20 px-2 py-1 rounded border border-pabs-gold">$200 MXN</span>.
-      </p>
-    </div>
-  </section>
-
-  <!-- TABLA DE COSTOS Y PLANES -->
-  <section class="max-w-5xl mx-auto -mt-6 px-4 mb-10">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      
-      <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-pabs-green text-center">
-        <h3 class="text-lg font-bold text-pabs-green mb-1">Aportación Semanal</h3>
-        <div class="text-3xl font-extrabold text-slate-900 my-2">$150 <span class="text-sm font-normal text-slate-500">MXN</span></div>
-        <p class="text-xs text-slate-500">Inversión inicial desde $200 MXN</p>
-      </div>
-
-      <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-pabs-gold text-center relative transform md:-translate-y-2">
-        <span class="bg-pabs-gold text-pabs-darkgreen text-xs font-bold px-3 py-1 rounded-full uppercase absolute -top-3 left-1/2 -translate-x-1/2">Más Elegido</span>
-        <h3 class="text-lg font-bold text-pabs-green mb-1">Aportación Quincenal</h3>
-        <div class="text-3xl font-extrabold text-slate-900 my-2">$300 <span class="text-sm font-normal text-slate-500">MXN</span></div>
-        <p class="text-xs text-slate-500">Inversión inicial desde $200 MXN</p>
-      </div>
-
-      <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-pabs-green text-center">
-        <h3 class="text-lg font-bold text-pabs-green mb-1">Aportación Mensual</h3>
-        <div class="text-3xl font-extrabold text-slate-900 my-2">$600 <span class="text-sm font-normal text-slate-500">MXN</span></div>
-        <p class="text-xs text-slate-500">Inversión inicial desde $200 MXN</p>
-      </div>
 
     </div>
-  </section>
 
-  <!-- FORMULARIO E IDENTIFICACIÓN -->
-  <main id="solicitud" class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden mb-16">
-    <div class="bg-pabs-green px-6 py-4 border-b border-pabs-gold">
-      <h2 class="text-xl font-bold text-white">Solicitud de Afiliación Digital</h2>
-      <p class="text-xs text-pabs-lightgold">Completa la información y adjunta las fotografías de tu identificación (INE/Identificación Oficial).</p>
+
+    <nav class="navigation">
+
+        <a href="#inicio">
+            Inicio
+        </a>
+
+        <a href="#beneficios">
+            Beneficios
+        </a>
+
+        <a href="#como-funciona">
+            ¿Cómo funciona?
+        </a>
+
+        <a href="#preguntas">
+            Preguntas
+        </a>
+
+    </nav>
+
+
+    <button
+        class="header-button"
+        onclick="openAssistant()">
+
+        AFÍLIATE
+
+    </button>
+
+</header>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section
+    id="inicio"
+    class="hero">
+
+
+    <div class="hero-overlay"></div>
+
+
+    <div class="hero-content">
+
+
+        <span class="hero-label">
+            PROTECCIÓN Y PREVISIÓN
+        </span>
+
+
+        <h1>
+
+            Tu tranquilidad
+            <br>
+
+            <strong>
+                comienza hoy.
+            </strong>
+
+        </h1>
+
+
+        <p>
+
+            Anticiparte es una decisión inteligente.
+            Conoce las alternativas PABS y recibe
+            orientación personalizada para iniciar
+            tu proceso de afiliación.
+
+        </p>
+
+
+        <div class="hero-actions">
+
+            <button
+                class="primary-button"
+                onclick="startAffiliation()">
+
+                QUIERO AFILIARME
+
+            </button>
+
+
+            <button
+                class="secondary-button"
+                onclick="openAssistant()">
+
+                HABLAR CON EL ASISTENTE
+
+            </button>
+
+        </div>
+
+
+        <div class="hero-note">
+
+            ✓ Atención personalizada
+            &nbsp;&nbsp;
+            ✓ Orientación profesional
+            &nbsp;&nbsp;
+            ✓ Proceso sencillo
+
+        </div>
+
+
     </div>
 
-    <form id="pabsForm" onsubmit="generarContrato(event)" class="p-6 md:p-8 space-y-6">
-      
-      <!-- Datos Titular -->
-      <div>
-        <h3 class="text-md font-bold text-pabs-green mb-3 border-b pb-1">1. Datos del Titular</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Nombre Completo</label>
-            <input type="text" id="nombre" required placeholder="Nombre(s) y Apellidos" class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-pabs-green outline-none text-sm">
-          </div>
-          <div>
-            <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Teléfono de Contacto</label>
-            <input type="tel" id="telefono" required placeholder="10 dígitos" class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-pabs-green outline-none text-sm">
-          </div>
-          <div>
-            <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Dirección / Domicilio</label>
-            <input type="text" id="domicilio" required placeholder="Calle, Número y Colonia" class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-pabs-green outline-none text-sm">
-          </div>
-          <div>
-            <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Ciudad / Municipio</label>
-            <input type="text" id="ciudad" required placeholder="Ej. Tijuana, B.C." class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-pabs-green outline-none text-sm">
-          </div>
+</section>
+
+
+
+<!-- =========================
+     BENEFICIOS
+========================= -->
+
+<section
+    id="beneficios"
+    class="benefits-section">
+
+
+    <div class="section-heading">
+
+        <span>
+            CONOCE MÁS
+        </span>
+
+        <h2>
+            ¿Por qué afiliarte?
+        </h2>
+
+        <p>
+
+            La previsión permite tomar decisiones
+            con anticipación y brindar mayor
+            tranquilidad a tu familia.
+
+        </p>
+
+    </div>
+
+
+
+    <div class="benefits-grid">
+
+
+        <article class="benefit-card">
+
+            <div class="benefit-icon">
+                ✓
+            </div>
+
+            <h3>
+                Protección
+            </h3>
+
+            <p>
+
+                Planea con anticipación y evita
+                dejar decisiones importantes
+                para momentos difíciles.
+
+            </p>
+
+        </article>
+
+
+
+        <article class="benefit-card">
+
+            <div class="benefit-icon">
+                ◆
+            </div>
+
+            <h3>
+                Previsión
+            </h3>
+
+            <p>
+
+                Construye una alternativa de
+                protección mediante aportaciones
+                programadas.
+
+            </p>
+
+        </article>
+
+
+
+        <article class="benefit-card">
+
+            <div class="benefit-icon">
+                ★
+            </div>
+
+            <h3>
+                Tranquilidad
+            </h3>
+
+            <p>
+
+                Cuenta con orientación para
+                conocer tus opciones antes
+                de tomar una decisión.
+
+            </p>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     COMO FUNCIONA
+========================= -->
+
+<section
+    id="como-funciona"
+    class="process-section">
+
+
+    <div class="section-heading">
+
+        <span>
+            PROCESO
+        </span>
+
+        <h2>
+            Afiliarte es sencillo
+        </h2>
+
+    </div>
+
+
+    <div class="process-grid">
+
+
+        <div class="process-step">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <h3>
+                Infórmate
+            </h3>
+
+            <p>
+                Resuelve tus dudas con
+                nuestro asistente virtual.
+            </p>
+
         </div>
-      </div>
 
-      <!-- Plan Financiero -->
-      <div>
-        <h3 class="text-md font-bold text-pabs-green mb-3 border-b pb-1">2. Esquema de Pagos y Aportaciones</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Inversión Inicial</label>
-            <input type="text" value="$200 MXN (Inscripción y Apertura)" readonly class="w-full px-3 py-2 bg-slate-100 border rounded-lg text-sm font-bold text-slate-700 cursor-not-allowed">
-          </div>
-          <div>
-            <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Frecuencia de Aportación</label>
-            <select id="frecuencia" class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-pabs-green outline-none text-sm">
-              <option value="Semanal - $150 MXN">Semanal - $150 MXN</option>
-              <option value="Quincenal - $300 MXN">Quincenal - $300 MXN</option>
-              <option value="Mensual - $600 MXN">Mensual - $600 MXN</option>
-            </select>
-          </div>
-        </div>
-      </div>
 
-      <!-- Carga de Fotografía ID Ambos Lados -->
-      <div>
-        <h3 class="text-md font-bold text-pabs-green mb-3 border-b pb-1">3. Fotografía de Identificación (Ambos Lados)</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          
-          <!-- Frente -->
-          <div class="border-2 border-dashed border-slate-300 rounded-lg p-4 text-center hover:bg-slate-50 transition">
-            <label class="block cursor-pointer">
-              <span class="text-xs font-bold text-pabs-green block mb-1">📷 Foto Frente de Identificación</span>
-              <span class="text-xs text-slate-500 block mb-2">Tomar foto o subir archivo</span>
-              <input type="file" id="fotoFrente" accept="image/*" capture="environment" onchange="previewImage(this, 'previewFrente')" required class="hidden">
-              <div class="bg-pabs-green text-white text-xs py-1.5 px-3 rounded inline-block font-semibold">Seleccionar / Capturar</div>
-            </label>
-            <img id="previewFrente" class="hidden mt-3 max-h-32 mx-auto rounded border shadow-sm">
-          </div>
 
-          <!-- Reverso -->
-          <div class="border-2 border-dashed border-slate-300 rounded-lg p-4 text-center hover:bg-slate-50 transition">
-            <label class="block cursor-pointer">
-              <span class="text-xs font-bold text-pabs-green block mb-1">📷 Foto Reverso de Identificación</span>
-              <span class="text-xs text-slate-500 block mb-2">Tomar foto o subir archivo</span>
-              <input type="file" id="fotoReverso" accept="image/*" capture="environment" onchange="previewImage(this, 'previewReverso')" required class="hidden">
-              <div class="bg-pabs-green text-white text-xs py-1.5 px-3 rounded inline-block font-semibold">Seleccionar / Capturar</div>
-            </label>
-            <img id="previewReverso" class="hidden mt-3 max-h-32 mx-auto rounded border shadow-sm">
-          </div>
+        <div class="process-step">
+
+            <div class="step-number">
+                02
+            </div>
+
+            <h3>
+                Registra tus datos
+            </h3>
+
+            <p>
+                Completa la información necesaria
+                para iniciar tu solicitud.
+            </p>
 
         </div>
-      </div>
 
-      <!-- Botón Generar/Imprimir -->
-      <button type="submit" class="w-full bg-pabs-gold hover:bg-yellow-500 text-pabs-darkgreen font-extrabold py-3 px-6 rounded-lg shadow-md text-base transition flex items-center justify-center gap-2">
-        <span>Imprimir / Descargar Contrato en PDF</span>
-      </button>
 
-    </form>
-  </main>
 
-  <!-- LÓGICA DE CAPTURA Y GENERACIÓN DE CONTRATO PDF -->
-  <script>
-    let imgFrenteBase64 = null;
-    let imgReversoBase64 = null;
+        <div class="process-step">
 
-    // Previsualizar y convertir imagen a Base64
-    function previewImage(input, previewId) {
-      const file = input.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const imgElement = document.getElementById(previewId);
-          imgElement.src = e.target.result;
-          imgElement.classList.remove('hidden');
+            <div class="step-number">
+                03
+            </div>
 
-          if (previewId === 'previewFrente') imgFrenteBase64 = e.target.result;
-          if (previewId === 'previewReverso') imgReversoBase64 = e.target.result;
-        };
-        reader.readAsDataURL(file);
-      }
-    }
+            <h3>
+                Recibe orientación
+            </h3>
 
-    // Generación de documento PDF listo para imprimir
-    function generarContrato(event) {
-      event.preventDefault();
+            <p>
+                Un asesor podrá continuar
+                contigo el proceso.
+            </p>
 
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
+        </div>
 
-      const nombre = document.getElementById('nombre').value;
-      const telefono = document.getElementById('telefono').value;
-      const domicilio = document.getElementById('domicilio').value;
-      const ciudad = document.getElementById('ciudad').value;
-      const frecuencia = document.getElementById('frecuencia').value;
-      const folio = 'PABS-' + Math.floor(100000 + Math.random() * 900000);
-      const fecha = new Date().toLocaleDateString('es-MX');
 
-      // Encabezado PABS
-      doc.setFillColor(0, 92, 59); // Verde PABS
-      doc.rect(0, 0, 210, 28, 'F');
+    </div>
 
-      doc.setFillColor(212, 175, 55); // Línea Oro
-      doc.rect(0, 28, 210, 2, 'F');
+</section>
 
-      doc.setTextColor(255, 255, 255);
-      doc.setFontSize(16);
-      doc.setFont('helvetica', 'bold');
-      doc.text('PROGRAMA DE APOYO BENEFICIO SOCIAL (PABS)', 15, 18);
 
-      // Datos del Folio
-      doc.setTextColor(60, 60, 60);
-      doc.setFontSize(9);
-      doc.setFont('helvetica', 'normal');
-      doc.text(`Folio Solicitud: ${folio}`, 145, 38);
-      doc.text(`Fecha de Registro: ${fecha}`, 145, 43);
 
-      // Título Documento
-      doc.setFontSize(13);
-      doc.setFont('helvetica', 'bold');
-      doc.setTextColor(0, 92, 59);
-      doc.text('CONTRATO DE AFILIACIÓN Y SOLICITUD DE COBERTURA', 15, 48);
+<!-- =========================
+     CTA
+========================= -->
 
-      // Sección 1: Datos del Titular
-      doc.setFontSize(10);
-      doc.setFont('helvetica', 'bold');
-      doc.setTextColor(40, 40, 40);
-      doc.text('1. DATOS DEL TITULAR Y AFILIADO', 15, 58);
+<section class="cta-section">
 
-      doc.setFont('helvetica', 'normal');
-      doc.setFontSize(9);
-      doc.text(`Nombre Completo: ${nombre}`, 15, 65);
-      doc.text(`Teléfono: ${telefono}`, 15, 71);
-      doc.text(`Domicilio: ${domicilio}`, 15, 77);
-      doc.text(`Ciudad / Estado: ${ciudad}`, 15, 83);
+    <div>
 
-      // Sección 2: Plan Financiero
-      doc.setFont('helvetica', 'bold');
-      doc.setFontSize(10);
-      doc.text('2. ESQUEMA FINANCIERO Y APORTACIONES', 15, 95);
+        <span>
+            DA EL PRIMER PASO
+        </span>
 
-      doc.setFont('helvetica', 'normal');
-      doc.setFontSize(9);
-      doc.text('Inversión Inicial de Apertura: $200.00 MXN', 15, 102);
-      doc.text(`Frecuencia y Aportación Programada: ${frecuencia}`, 15, 108);
+        <h2>
+            Comienza tu proceso de afiliación
+        </h2>
 
-      // Sección 3: Anexo Identificación
-      doc.setFont('helvetica', 'bold');
-      doc.setFontSize(10);
-      doc.text('3. ANEXO DE IDENTIFICACIÓN OFICIAL (AMBOS LADOS)', 15, 120);
+        <p>
+            Nuestro asistente puede orientarte
+            antes de registrar tus datos.
+        </p>
 
-      // Adjuntar imágenes al PDF si existen
-      if (imgFrenteBase64) {
-        doc.addImage(imgFrenteBase64, 'JPEG', 15, 125, 85, 50);
-        doc.text('Frente de Identificación', 15, 178);
-      }
-      if (imgReversoBase64) {
-        doc.addImage(imgReversoBase64, 'JPEG', 110, 125, 85, 50);
-        doc.text('Reverso de Identificación', 110, 178);
-      }
 
-      // Cláusulas resumen
-      doc.setFontSize(8);
-      doc.setFont('helvetica', 'normal');
-      const clausula = 'El presente documento valida la recepción de la solicitud de afiliación a los servicios de previsión de PABS. La validez de este contrato inicia con la aportación de apertura correspondiente.';
-      doc.text(doc.splitTextToSize(clausula, 180), 15, 190);
+        <button
+            class="primary-button"
+            onclick="startAffiliation()">
 
-      // Firmas
-      doc.setDrawColor(180, 180, 180);
-      doc.line(20, 230, 85, 230);
-      doc.text('Firma del Titular / Afiliado', 25, 235);
+            INICIAR AFILIACIÓN
 
-      doc.line(125, 230, 190, 230);
-      doc.text('Firma Asesor PABS Autorizado', 130, 235);
+        </button>
 
-      // Descargar / Abrir ventana de impresión
-      doc.save(`Contrato_PABS_${folio}.pdf`);
-    }
-  </script>
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     PREGUNTAS
+========================= -->
+
+<section
+    id="preguntas"
+    class="faq-section">
+
+
+    <div class="section-heading">
+
+        <span>
+            INFORMACIÓN
+        </span>
+
+        <h2>
+            Preguntas frecuentes
+        </h2>
+
+    </div>
+
+
+    <div class="faq-container">
+
+
+        <details>
+
+            <summary>
+                ¿Qué es PABS?
+            </summary>
+
+            <p>
+
+                PABS es un programa de apoyo de beneficio
+                social orientado a la previsión y protección
+                familiar.
+
+            </p>
+
+        </details>
+
+
+
+        <details>
+
+            <summary>
+                ¿Cómo puedo iniciar mi afiliación?
+            </summary>
+
+            <p>
+
+                Puedes iniciar proporcionando tus datos
+                mediante el formulario de afiliación.
+                Posteriormente un asesor podrá continuar
+                con tu atención.
+
+            </p>
+
+        </details>
+
+
+
+        <details>
+
+            <summary>
+                ¿Cuánto puedo aportar?
+            </summary>
+
+            <p>
+
+                El sistema mostrará automáticamente
+                la aportación correspondiente de acuerdo
+                con la frecuencia seleccionada.
+
+            </p>
+
+        </details>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+    <div class="footer-brand">
+
+        <strong>
+            PABS
+        </strong>
+
+        <span>
+            Programa de Apoyo de Beneficio Social
+        </span>
+
+    </div>
+
+
+    <div class="footer-contact">
+
+        <strong>
+            Asesor Ejecutivo Comercial
+        </strong>
+
+        <span>
+            Sergio Estrada
+        </span>
+
+        <span>
+            WhatsApp: 664 160 1608
+        </span>
+
+    </div>
+
+
+    <div class="footer-copy">
+
+        © 2026 PABS.
+        Información sujeta a términos y condiciones aplicables.
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================
+     ASISTENTE VIRTUAL
+========================= -->
+
+<div
+    id="assistant"
+    class="assistant">
+
+
+    <div class="assistant-window">
+
+
+        <div class="assistant-header">
+
+            <div>
+
+                <strong>
+                    Asistente PABS
+                </strong>
+
+                <span>
+                    ● En línea
+                </span>
+
+            </div>
+
+
+            <button
+                onclick="closeAssistant()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+
+        <div
+            id="chat"
+            class="chat">
+
+            <div class="bot-message">
+
+                Hola 👋
+
+                <br><br>
+
+                Soy tu asistente virtual PABS.
+
+                <br><br>
+
+                Puedo orientarte sobre el proceso
+                de afiliación y ayudarte a resolver
+                tus dudas.
+
+                <br><br>
+
+                ¿Qué deseas hacer?
+
+            </div>
+
+
+            <div class="assistant-options">
+
+                <button onclick="assistantChoice('afiliarme')">
+                    Quiero afiliarme
+                </button>
+
+                <button onclick="assistantChoice('informacion')">
+                    Quiero conocer PABS
+                </button>
+
+                <button onclick="assistantChoice('aportaciones')">
+                    Quiero saber las aportaciones
+                </button>
+
+                <button onclick="assistantChoice('asesor')">
+                    Quiero hablar con un asesor
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="assistant-input">
+
+            <input
+                id="userMessage"
+                type="text"
+                placeholder="Escribe tu pregunta...">
+
+            <button
+                onclick="sendMessage()">
+
+                ➤
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- BOTÓN FLOTANTE -->
+
+<button
+    id="assistantButton"
+    class="assistant-button"
+    onclick="openAssistant()">
+
+    <span>
+        ✦
+    </span>
+
+    <small>
+        ¿Necesitas ayuda?
+    </small>
+
+</button>
+
+
+
+<script src="script.js"></script>
+
+
 </body>
+
 </html>
