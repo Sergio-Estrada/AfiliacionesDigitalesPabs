@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PABS® | Programa de Apoyo de Beneficio Social - Afiliación Digital B.C.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pabs-blue: #0d2c54;
+            --pabs-blue-light: #16427d;
+            --pabs-gold: #c69214;
+            --pabs-gold-hover: #a3770f;
+            --pabs-red: #b91c1c;
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* BARRA SUPERIOR */
+        .top-bar {
+            background-color: #081a33;
+            color: #ffffff;
+            padding: 8px 20px;
+            font-size: 0.82rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-lock {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #d1d5db;
+            padding: 3px 10px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-lock:hover {
+            background: rgba(255,255,255,0.1);
+            color: #ffffff;
+        }
+
+        /* HEADER CORPORATIVO */
+        header {
+            background: #ffffff;
+            border-bottom: 3px solid var(--pabs-gold);
+            padding: 15px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-box img {
+            height: 52px;
+            width: auto;
+        }
+
+        .company-title {
+            border-left: 2px solid #cbd5e1;
+            padding-left: 15px;
+        }
+
+        .company-title h1 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--pabs-blue);
+            letter-spacing: 0.5px;
+        }
+
+        .company-title p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* HERO BANNER */
+        .hero {
+            background: linear-gradient(135deg, var(--pabs-blue) 0%, var(--pabs-blue-light) 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            max-width: 750px;
+            margin: 0 auto 15px auto;
+            color: #e2e8f0;
+            font-weight: 300;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            font-size: 0.82rem;
+        }
+
+        .hero-badge-item {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 5px 14px;
+            border-radius: 20px;
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--pabs-blue);
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: var(--pabs-gold);
+            margin: 8px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* PLANES COMPARATIVOS */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .plan-card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .plan-card.featured {
+            border: 2px solid var(--pabs-gold);
+        }
+
+        .plan-badge-top {
+            background: var(--pabs-gold);
+            color: #ffffff;
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px;
+            text-transform: uppercase;
+        }
+
+        .plan-header {
+            background: var(--pabs-blue);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .plan-price-box {
+            background: #f1f
